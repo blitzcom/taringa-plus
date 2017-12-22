@@ -24,10 +24,10 @@ exports[`Renders Post 1`] = `
       className="meta"
     >
       <time
-        dateTime="2017-12-20T06:00:00.000Z"
-        title="2017-12-20 06:00"
+        dateTime="2017-12-21T06:00:00.000Z"
+        title="Dec 21, 2017"
       >
-        hace 2 días
+        hace 1 día
       </time>
     </div>
   </div>

@@ -3,12 +3,11 @@ import Post from './Post'
 import renderer from 'react-test-renderer'
 
 it('Renders Post', () => {
-  const now = Date.now('Dec 21, 2017')
-  Date.now = jest.genMockFunction().mockReturnValue(now)
+  Date.now = jest.fn(() => new Date('Dec 22, 2017'))
 
   const item = {
     id: 1,
-    created: new Date('Dec 20, 2017'),
+    created: 'Dec 21, 2017',
     canonical: 'canonical-url',
     title: 'post-title',
     owner: {
