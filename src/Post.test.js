@@ -3,11 +3,11 @@ import Post from './Post'
 import renderer from 'react-test-renderer'
 
 it('Renders Post', () => {
-  Date.now = jest.fn(() => new Date('Dec 22, 2017'))
+  Date.now = jest.fn(() => 1513924592705)
 
   const item = {
     id: 1,
-    created: 'Dec 21, 2017',
+    created: 1513920502005,
     canonical: 'canonical-url',
     title: 'post-title',
     owner: {
