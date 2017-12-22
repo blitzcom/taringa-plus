@@ -1,9 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import 'semantic-ui-css/semantic.min.css';
-import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import './index.css'
+import 'semantic-ui-css/semantic.min.css'
+import App from './App'
 
-ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
+import configure from './store'
+
+const store = configure()
+
+ReactDOM.render(
+  <Provider>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
