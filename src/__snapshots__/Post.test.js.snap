@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Post 1`] = `
+<div
+  className="ui card"
+  href={undefined}
+  onClick={[Function]}
+>
+  <img
+    className="ui image"
+    src=""
+  />
+  <div
+    className="content"
+  >
+    <a
+      className="header"
+      href="canonical-url"
+      target="_blank"
+    >
+      post-title
+    </a>
+    <div
+      className="meta"
+    >
+      <time
+        dateTime="2017-12-20T06:00:00.000Z"
+        title="2017-12-20 06:00"
+      >
+        hace 2 días
+      </time>
+    </div>
+  </div>
+  <div
+    className="extra content"
+  >
+    <img
+      className="ui avatar image"
+      src="medium-avatar"
+    />
+    owner-nick
+  </div>
+</div>
+`;
