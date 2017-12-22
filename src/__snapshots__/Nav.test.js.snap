@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render nav 1`] = `
+<div
+  className="ui large inverted top fixed menu"
+>
+  <div
+    className="ui container"
+  >
+    <div
+      className="header item"
+      onClick={[Function]}
+    >
+      Taringa Plus!
+    </div>
+  </div>
+</div>
+`;

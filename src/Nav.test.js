@@ -1,10 +1,10 @@
 import React from 'react'
-import App from './App'
+import Nav from './Nav'
 import renderer from 'react-test-renderer'
 
-it('Renders App', () => {
+it('Render nav', () => {
   const component = renderer.create(
-    <App/>
+    <Nav/>
   )
 
   let tree = component.toJSON()
