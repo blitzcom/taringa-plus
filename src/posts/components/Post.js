@@ -2,7 +2,7 @@ import React from 'react'
 import TimeAgo from 'react-timeago'
 import { Card, Image } from 'semantic-ui-react'
 
-import { getPostImageURL, esFormatter } from './Utils'
+import { getPostImageURL, esFormatter } from '../../Utils'
 
 const Post = (props) => (
   <Card key={props.id}>

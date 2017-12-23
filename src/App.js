@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react'
 import './App.css'
 import Nav from './Nav'
-import Posts from './Posts'
+import Posts from './posts/components/Posts'
 
 class App extends Component {
   render() {

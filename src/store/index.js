@@ -3,6 +3,10 @@ import thunk from 'redux-thunk'
 import reduxInmmutable from 'redux-immutable-state-invariant'
 import axios from 'axios'
 
+import reducer from './reducers'
+
+axios.defaults.baseURL = 'https://api.taringa.net'
+
 const buildThunk = () => thunk.withExtraArgument(axios)
 
 const buildDevTools = () => window.devToolsExtension ?
@@ -25,7 +29,7 @@ export const configure = (initialState = globalState) => {
     )
   }
 
-  return redux.createStore(f => f, initialState, compose)
+  return redux.createStore(reducer, initialState, compose)
 }
 
 export default configure
