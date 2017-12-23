@@ -12,10 +12,10 @@ const Post = (props) => (
         {props.title}
       </Card.Header>
       <Card.Meta>
-        {/* <TimeAgo
+        <TimeAgo
           date={props.created}
           formatter={esFormatter}
-        /> */}
+        />
       </Card.Meta>
     </Card.Content>
     <Card.Content extra>

@@ -82,7 +82,7 @@ exports[`Posts component renders posts 1`] = `
           dateTime="2017-12-22T05:28:22.005Z"
           title="2017-12-22 05:28"
         >
-          hace 21 horas
+          hace 1 hora
         </time>
       </div>
     </div>
@@ -122,7 +122,7 @@ exports[`Posts component renders posts 1`] = `
           dateTime="2017-12-22T05:28:32.005Z"
           title="2017-12-22 05:28"
         >
-          hace 21 horas
+          hace 1 hora
         </time>
       </div>
     </div>
