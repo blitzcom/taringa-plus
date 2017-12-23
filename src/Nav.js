@@ -3,7 +3,7 @@ import { Menu, Container } from 'semantic-ui-react'
 
 const Nav = (props) => {
   return (
-    <Menu fixed='top' size='large' inverted>
+    <Menu fixed='top' size='large'>
       <Container>
         <Menu.Item header>Taringa Plus!</Menu.Item>
       </Container>

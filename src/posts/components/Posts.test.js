@@ -4,6 +4,8 @@ import renderer from 'react-test-renderer'
 
 describe('Posts component', () => {
   it('renders posts', () => {
+    Date.now = jest.fn(() => 1513924592705)
+
     const posts = [
       {
         id: 1,
