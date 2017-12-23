@@ -1,4 +1,5 @@
 import configure from './'
+import axios from 'axios'
 
 describe('store', () => {
   it('returns initial state', () => {
@@ -17,5 +18,11 @@ describe('store', () => {
         }
       }
     })
+  })
+})
+
+describe('API base URL', () => {
+  it('matches endpoint', () => {
+    expect(axios.defaults.baseURL).toEqual('https://api.taringa.net')
   })
 })
