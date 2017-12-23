@@ -10,7 +10,7 @@ import configure from './store'
 const store = configure()
 
 ReactDOM.render(
-  <Provider>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
