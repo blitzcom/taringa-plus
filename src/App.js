@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
 import './App.css'
 import Nav from './Nav'
-import Section from './sections/components/Section'
+import Section from './components/Section'
 
-import { sectionsSelector } from './posts/selectors'
-import * as actions from './posts/actions'
+import { sectionsSelector } from './selectors/posts'
+import * as actions from './actions/posts'
 
 class App extends Component {
   render() {

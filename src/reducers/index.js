@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { postsEntities, postsControl } from '../posts/reducers'
+import { postsEntities, postsControl } from './posts'
 
 const entities = combineReducers({
   posts: postsEntities

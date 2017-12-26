@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import reduxInmmutable from 'redux-immutable-state-invariant'
 import axios from 'axios'
 
-import reducer from './reducers'
+import reducer from '../reducers'
 
 axios.defaults.baseURL = 'https://api.taringa.net'
 

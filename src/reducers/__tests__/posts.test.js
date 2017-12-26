@@ -1,5 +1,5 @@
-import { postsEntities, fetchControl } from './reducers'
-import * as types from './types'
+import { postsEntities, fetchControl } from '../posts'
+import * as types from '../../types/posts'
 
 describe('posts entities reducer', () => {
   it('returns initial state', () => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import Posts from '../../posts/components/Posts'
+import Posts from './Posts'
 
 export class Section extends Component {
   componentDidMount () {

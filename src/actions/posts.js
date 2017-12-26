@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import * as types from './types'
+import * as types from '../types/posts'
 
 export const addPage = (posts) => ({
   type: types.ADD_PAGE,

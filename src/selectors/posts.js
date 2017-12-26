@@ -29,7 +29,6 @@ export const sectionsSelector = createSelector(
 
       return _.assign({}, item)
     })
-    console.log(items)
     return items
   }
 )

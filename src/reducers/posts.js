@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { combineReducers } from 'redux'
 
-import * as types from './types'
+import * as types from '../types/posts'
 
 const reducePostsPage = (posts) => {
   return _.reduce(posts, (container, post) => {
