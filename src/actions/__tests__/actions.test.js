@@ -3,8 +3,8 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import * as actions from './actions'
-import * as types from './types'
+import * as actions from '../posts'
+import * as types from '../../types/posts'
 
 const data = [
   { id: 1, foo: 'foo' },
@@ -33,21 +33,25 @@ const mock = new MockAdapter(axios)
 
 describe('fetch actions', () => {
   it('creates an action to start fetching posts', () => {
-    expect(actions.fetchRequest()).toEqual({
-      type: types.FETCH_REQUEST
+    expect(actions.fetchSectionRequest(1)).toEqual({
+      type: types.FETCH_SECTION_REQUEST,
+      id: 1
     })
   })
 
   it('creates an action to end fetching posts with success', () => {
-    expect(actions.fetchSuccess()).toEqual({
-      type: types.FETCH_SUCCESS
+    expect(actions.fetchSectionSuccess(1, [1, 2, 3])).toEqual({
+      type: types.FETCH_SECTION_SUCCESS,
+      id: 1,
+      posts: [1, 2, 3]
     })
   })
 
   it('creates an action to end fetching posts with failure', () => {
-    expect(actions.fetchFailure('message error')).toEqual({
-      type: types.FETCH_FAILURE,
-      message: 'message error'
+    expect(actions.fetchSectionFailure(1, 'message error')).toEqual({
+      type: types.FETCH_SECTION_FAILURE,
+      message: 'message error',
+      id: 1
     })
   })
 
@@ -57,30 +61,30 @@ describe('fetch actions', () => {
     })
 
     it('returns success', () => {
-      mock.onGet('/post/trending/view?count=24')
+      mock.onGet('/post/recent/view/foo')
         .reply(200, data)
 
       const store = mockStore()
 
-      return store.dispatch(actions.fetch()).then(() => {
+      return store.dispatch(actions.fetch(1, 'foo', 1)).then(() => {
         expect(store.getActions()).toEqual([
-          { type: types.FETCH_REQUEST },
+          { type: types.FETCH_SECTION_REQUEST, id: 1 },
           { type: types.ADD_PAGE, posts: data },
-          { type: types.FETCH_SUCCESS }
+          { type: types.FETCH_SECTION_SUCCESS, id: 1, posts: [1, 2, 3] }
         ])
       })
     })
 
     it('returns failure', () => {
-      mock.onGet('/post/trending/view?count=24')
+      mock.onGet('/post/recent/view/foo')
         .networkError()
 
       const store = mockStore()
 
-      return store.dispatch(actions.fetch()).then(() => {
+      return store.dispatch(actions.fetch(1, 'foo', 1)).then(() => {
         expect(store.getActions()).toEqual([
-          { type: types.FETCH_REQUEST },
-          { type: types.FETCH_FAILURE, message: 'Network Error' }
+          { type: types.FETCH_SECTION_REQUEST, id: 1 },
+          { type: types.FETCH_SECTION_FAILURE, message: 'Network Error', id: 1 }
         ])
       })
     })

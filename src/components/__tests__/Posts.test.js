@@ -77,14 +77,4 @@ describe('Posts component', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-
-  it('calls fetch action', () => {
-    const mock = jest.fn()
-
-    const component = renderer.create(
-      <Posts fetch={mock}/>
-    )
-
-    expect(mock).toBeCalled()
-  })
 })

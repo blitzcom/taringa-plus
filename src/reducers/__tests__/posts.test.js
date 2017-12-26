@@ -30,9 +30,9 @@ describe('posts control reducer', () => {
     })
   })
 
-  it('handles FETCH_REQUEST', () => {
+  it('handles FETCH_SECTION_REQUEST', () => {
     const action = {
-      type: types.FETCH_REQUEST
+      type: types.FETCH_SECTION_REQUEST
     }
 
     expect(fetchControl(undefined, action)).toEqual({
@@ -41,9 +41,9 @@ describe('posts control reducer', () => {
     })
   })
 
-  it('clears error message when FETCH_REQUEST', () => {
+  it('clears error message when FETCH_SECTION_REQUEST', () => {
     const action = {
-      type: types.FETCH_REQUEST
+      type: types.FETCH_SECTION_REQUEST
     }
 
     const state = {
@@ -57,9 +57,9 @@ describe('posts control reducer', () => {
     })
   })
 
-  it('handles FETCH_SUCCESS', () => {
+  it('handles FETCH_SECTION_SUCCESS', () => {
     const action = {
-      type: types.FETCH_SUCCESS
+      type: types.FETCH_SECTION_SUCCESS
     }
 
     expect(fetchControl(undefined, action)).toEqual({
@@ -68,9 +68,9 @@ describe('posts control reducer', () => {
     })
   })
 
-  it('handles FETCH_FAILURE', () => {
+  it('handles FETCH_SECTION_FAILURE', () => {
     const action = {
-      type: types.FETCH_FAILURE,
+      type: types.FETCH_SECTION_FAILURE,
       message: 'foobar'
     }
 

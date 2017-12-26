@@ -20,11 +20,11 @@ export const postsEntities = (state = {}, action) => {
 
 export const fetchControl = (state = { status: 'success', error: '' }, action) => {
   switch (action.type) {
-    case types.FETCH_REQUEST:
+    case types.FETCH_SECTION_REQUEST:
       return _.assign({}, state, { status: 'fetching', error: '' })
-    case types.FETCH_SUCCESS:
+    case types.FETCH_SECTION_SUCCESS:
       return _.assign({}, state, { status: 'success' })
-    case types.FETCH_FAILURE:
+    case types.FETCH_SECTION_FAILURE:
       return _.assign({}, state, { status: 'failure', error: action.message })
     default:
       return state;
@@ -76,11 +76,11 @@ const sectionsState = {
 
 const sectionReducer = (state, action) => {
   switch (action.type) {
-    case types.FETCH_REQUEST:
+    case types.FETCH_SECTION_REQUEST:
       return _.assign({}, state, { status: 'fetching', error: '' })
-    case types.FETCH_SUCCESS:
+    case types.FETCH_SECTION_SUCCESS:
       return _.assign({}, state, { status: 'success', postsIds: action.posts })
-    case types.FETCH_FAILURE:
+    case types.FETCH_SECTION_FAILURE:
       return _.assign({}, state, { status: 'failure' })
     default:
       return state
@@ -89,9 +89,9 @@ const sectionReducer = (state, action) => {
 
 export const sectionsControl = (state = sectionsState, action) => {
   switch (action.type) {
-    case types.FETCH_REQUEST:
-    case types.FETCH_SUCCESS:
-    case types.FETCH_FAILURE:
+    case types.FETCH_SECTION_REQUEST:
+    case types.FETCH_SECTION_SUCCESS:
+    case types.FETCH_SECTION_FAILURE:
       return _.assign(
         {},
         state,

@@ -6,26 +6,26 @@ export const addPage = (posts) => ({
   posts: posts
 })
 
-export const fetchRequest = (id) => ({
-  type: types.FETCH_REQUEST,
+export const fetchSectionRequest = (id) => ({
+  type: types.FETCH_SECTION_REQUEST,
   id: id
 })
 
-export const fetchSuccess = (id, posts) => ({
-  type: types.FETCH_SUCCESS,
+export const fetchSectionSuccess = (id, posts) => ({
+  type: types.FETCH_SECTION_SUCCESS,
   id: id,
   posts: posts
 })
 
-export const fetchFailure = (id, message) => ({
-  type: types.FETCH_FAILURE,
+export const fetchSectionFailure = (id, message) => ({
+  type: types.FETCH_SECTION_FAILURE,
   message: message,
   id: id
 })
 
-export const fetch = (id, category, count, trending) => {
+export const fetch = (id, category, count, trending = false) => {
   return (dispatch, getState, axios) => {
-    dispatch(fetchRequest(id))
+    dispatch(fetchSectionRequest(id))
 
     const url = trending ? '/post/trending/view' : `/post/recent/view/${category}`
 
@@ -38,8 +38,8 @@ export const fetch = (id, category, count, trending) => {
       .then(data => {
         const postsIds = _.map(data, 'id')
         dispatch(addPage(data))
-        dispatch(fetchSuccess(id, postsIds))
+        dispatch(fetchSectionSuccess(id, postsIds))
       })
-      .catch(error => dispatch(fetchFailure(id, error.message)))
+      .catch(error => dispatch(fetchSectionFailure(id, error.message)))
   }
 }
