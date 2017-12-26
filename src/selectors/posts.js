@@ -8,12 +8,7 @@ export const defaultSelector = createSelector(
   (posts) => _.values(posts)
 )
 
-const sectionsState = (state) => state.control.posts.sections
-
-const sectionsArray = (state) => createSelector(
-  sectionsState,
-  (sections) => _.values(sections)
-)
+const sectionsState = (state) => state.control.sections
 
 export const sectionsSelector = createSelector(
   sectionsState,

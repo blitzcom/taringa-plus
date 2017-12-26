@@ -6,7 +6,7 @@ import Nav from './Nav'
 import Section from './components/Section'
 
 import { sectionsSelector } from './selectors/posts'
-import * as actions from './actions/posts'
+import * as actions from './actions/sections'
 
 class App extends Component {
   render() {

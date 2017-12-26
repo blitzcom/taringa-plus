@@ -53,9 +53,7 @@ describe('store', () => {
         posts: {}
       },
       control: {
-        posts: {
-          sections: sectionsState
-        }
+        sections: sectionsState
       }
     })
   })
