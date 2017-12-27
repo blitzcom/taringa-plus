@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Loader, Message } from 'semantic-ui-react'
 
+import './Reader.css'
+
 import * as actions from '../actions/reader'
 import { defaultSelector, controlSelector } from '../selectors/reader'
 
-const createMarkup = (content) => ({ __html: content })
+import { toHTML } from '../BBCodeParser'
+
+const createMarkup = (content) => ({ __html: toHTML(content) })
 
 class Reader extends Component {
   componentDidMount () {
@@ -30,7 +34,12 @@ class Reader extends Component {
     }
 
     return (
-      <div dangerouslySetInnerHTML={createMarkup(post.body)}/>
+      <div className='ui grid'>
+        <div
+          className='eleven wide column'
+          dangerouslySetInnerHTML={createMarkup(post.body)}
+        />
+      </div>
     )
   }
 }
