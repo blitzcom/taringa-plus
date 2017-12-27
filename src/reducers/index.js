@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux'
 
-import { postsEntities, postsControl } from '../posts/reducers'
+import { postsEntities } from './posts'
+import { sectionsControl } from './sections'
 
 const entities = combineReducers({
   posts: postsEntities
 })
 
 const control = combineReducers({
-  posts: postsControl
+  sections: sectionsControl
 })
 
 export default combineReducers({

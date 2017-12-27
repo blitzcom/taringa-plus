@@ -1,5 +1,5 @@
 import React from 'react'
-import Post from './Post'
+import Post from '../Post'
 import renderer from 'react-test-renderer'
 
 it('Renders Post', () => {
