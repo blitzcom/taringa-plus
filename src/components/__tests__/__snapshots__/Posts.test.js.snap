@@ -70,8 +70,8 @@ exports[`Posts component renders posts 1`] = `
     >
       <a
         className="header"
-        href="canonical-url-1"
-        target="_blank"
+        href="/post/1"
+        onClick={[Function]}
       >
         post-title-1
       </a>
@@ -110,8 +110,8 @@ exports[`Posts component renders posts 1`] = `
     >
       <a
         className="header"
-        href="canonical-url-2"
-        target="_blank"
+        href="/post/2"
+        onClick={[Function]}
       >
         post-title-2
       </a>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Post from '../Post'
 import renderer from 'react-test-renderer'
+import { StaticRouter } from 'react-router'
 
 it('Renders Post', () => {
   Date.now = jest.fn(() => 1513924592705)
@@ -19,7 +20,9 @@ it('Renders Post', () => {
   }
 
   const component = renderer.create(
-    <Post {...item}/>
+    <StaticRouter location='/' context={{}}>
+      <Post {...item}/>
+    </StaticRouter>
   )
 
   let tree = component.toJSON()

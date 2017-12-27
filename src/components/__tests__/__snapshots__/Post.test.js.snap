@@ -15,8 +15,8 @@ exports[`Renders Post 1`] = `
   >
     <a
       className="header"
-      href="canonical-url"
-      target="_blank"
+      href="/post/1"
+      onClick={[Function]}
     >
       post-title
     </a>
