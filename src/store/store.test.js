@@ -50,10 +50,12 @@ describe('store', () => {
 
     expect(store.getState()).toEqual({
       entities: {
-        posts: {}
+        posts: {},
+        reader: {}
       },
       control: {
-        sections: sectionsState
+        sections: sectionsState,
+        reader: {}
       }
     })
   })

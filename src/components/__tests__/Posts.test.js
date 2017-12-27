@@ -1,6 +1,7 @@
 import React from 'react'
 import { Posts } from '../Posts'
 import renderer from 'react-test-renderer'
+import { StaticRouter } from 'react-router'
 
 describe('Posts component', () => {
   it('renders posts', () => {
@@ -34,7 +35,9 @@ describe('Posts component', () => {
     ]
 
     const component = renderer.create(
-      <Posts posts={posts}/>
+      <StaticRouter location='/' context={{}}>
+        <Posts posts={posts}/>
+      </StaticRouter>
     )
 
     let tree = component.toJSON()
