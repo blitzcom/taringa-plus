@@ -7,12 +7,13 @@ exports[`Render nav 1`] = `
   <div
     className="ui container"
   >
-    <div
+    <a
       className="header item"
+      href="/"
       onClick={[Function]}
     >
       Taringa Plus!
-    </div>
+    </a>
   </div>
 </div>
 `;

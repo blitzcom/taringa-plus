@@ -1,38 +1,24 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
+import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
-import Nav from './Nav'
-import Section from './components/Section'
 
-import { sectionsSelector } from './selectors/posts'
-import * as actions from './actions/sections'
+import Home from './components/Home'
+import Nav from './components/Nav'
 
 class App extends Component {
   render() {
-    const { sections, fetch } = this.props
-
     return (
-      <div>
-        <Nav/>
-        <Container className='app-container'>
-          {
-            sections.map(section => (
-              <Section
-                key={section.id}
-                {...section}
-                fetch={fetch}
-              />
-            ))
-          }
-        </Container>
-      </div>
+      <BrowserRouter>
+        <div>
+          <Nav/>
+          <Container className='app-container'>
+            <Route exact path='/' component={Home}/>
+          </Container>
+        </div>
+      </BrowserRouter>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  sections: sectionsSelector(state)
-})
-
-export default connect(mapStateToProps, actions)(App);
+export default App;

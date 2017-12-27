@@ -1,4 +1,4 @@
-import { getPostImageURL } from './Utils'
+import { getPostImageURL } from '../Utils'
 
 it('gets 4:3 image url', () => {
   const images = [
