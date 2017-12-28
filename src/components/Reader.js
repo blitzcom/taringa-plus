@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Loader, Message } from 'semantic-ui-react'
+import { Loader } from 'semantic-ui-react'
 
 import './Reader.css'
 
