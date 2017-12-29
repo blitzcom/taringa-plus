@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section renders 1`] = `
+<div
+  className="section"
+>
+  <div
+    className="ui pointing secondary section-nav menu"
+  >
+    <div
+      className="active item"
+      onClick={[Function]}
+    >
+      #Section
+    </div>
+  </div>
+  <div
+    className="ui icon message"
+  >
+    <i
+      aria-hidden="true"
+      className="smile icon"
+    />
+    <div
+      className="content"
+    >
+      <div
+        className="header"
+      >
+        No hay posts!
+      </div>
+      <p>
+        Prueba recargando la página para intentar descargar los últimos posts.
+      </p>
+    </div>
+  </div>
+</div>
+`;
