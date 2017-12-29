@@ -60,3 +60,9 @@ describe('store', () => {
     })
   })
 })
+
+describe('API base URL', () => {
+  it('matches endpoint', () => {
+    expect(axios.defaults.baseURL).toEqual('https://api.taringa.net')
+  })
+})
