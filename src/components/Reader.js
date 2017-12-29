@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Loader } from 'semantic-ui-react'
+import { Loader, Message } from 'semantic-ui-react'
 
 import './Reader.css'
 
@@ -11,13 +11,15 @@ import { toHTML } from '../BBCodeParser'
 
 const createMarkup = (content) => ({ __html: toHTML(content) })
 
-class Reader extends Component {
+export class Reader extends Component {
   componentDidMount () {
     const { match } = this.props
 
     if (match && match.params && match.params.id) {
       this.props.fetch(match.params.id)
     }
+
+    window.scrollTo(0, 0)
   }
 
   render () {
@@ -33,6 +35,17 @@ class Reader extends Component {
       )
     }
 
+    if (control.status === 'failure') {
+      return (
+        <Message
+          icon='frown'
+          header='Houston, tenemos un problema!'
+          content='Ha ocurrido un error. Intenta recargar la página.'
+          negative
+        />
+      )
+    }
+
     return (
       <div className='ui grid'>
         <div
@@ -42,6 +55,10 @@ class Reader extends Component {
       </div>
     )
   }
+}
+
+Reader.defaultProps = {
+  fetch: () => {}
 }
 
 const mapStateToProps = (state, props) => ({
