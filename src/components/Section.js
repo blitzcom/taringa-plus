@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import Posts from './Posts'
+import './Section.css'
 
 export class Section extends Component {
   componentDidMount () {
@@ -12,8 +13,8 @@ export class Section extends Component {
     const { error, name, status, posts } = this.props
 
     return (
-      <div>
-        <Menu pointing secondary>
+      <div className='section'>
+        <Menu pointing secondary className='section-nav'>
           <Menu.Item active>
             {name}
           </Menu.Item>
@@ -28,8 +29,11 @@ export class Section extends Component {
 }
 
 Section.defaultProps = {
+  error: '',
   fetch: () => {},
-  posts: []
+  name: '#Section',
+  posts: [],
+  status: 'success'
 }
 
 export default Section
