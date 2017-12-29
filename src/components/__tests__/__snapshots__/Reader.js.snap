@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reader renders 1`] = `
+<div
+  className="ui grid"
+>
+  <div
+    className="eleven wide column"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<strong>foobar</strong>",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Reader renders loader when fetching 1`] = `
+<div
+  className="ui active centered inline loader"
+/>
+`;
+
+exports[`Reader renders message error 1`] = `
+<div
+  className="ui icon negative message"
+>
+  <i
+    aria-hidden="true"
+    className="frown icon"
+  />
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      Houston, tenemos un problema!
+    </div>
+    <p>
+      Ha ocurrido un error. Intenta recargar la página.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Reader renders nothing if no control 1`] = `null`;
