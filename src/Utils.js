@@ -21,14 +21,14 @@ const spanishStrings = {
 
 export const esFormatter = buildFormatter(spanishStrings)
 
-export const getPostImageURL = (post) => {
+export const getPostImageURL = (post, ratio = '4:3') => {
   const fallbackURL = ''
 
   if (!post && !post.images) {
     return fallbackURL
   }
 
-  const matches = _.filter(post.images, { ratio: '4:3' })
+  const matches = _.filter(post.images, { ratio })
 
   if (matches.length > 0) {
     return matches[0].url

@@ -12,6 +12,13 @@ exports[`Reader renders 1`] = `
       }
     }
   />
+  <div
+    className="five wide column"
+  >
+    <div
+      className="ui items"
+    />
+  </div>
 </div>
 `;
 
