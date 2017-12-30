@@ -55,7 +55,12 @@ describe('store', () => {
       },
       control: {
         sections: sectionsState,
-        reader: {}
+        reader: {},
+        recommends: {
+          error: '',
+          postIds: [],
+          status: 'success'
+        }
       }
     })
   })

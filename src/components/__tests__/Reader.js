@@ -53,7 +53,7 @@ describe('Reader', () => {
     const mock = jest.fn()
 
     renderer.create(
-      <Reader match={match} fetch={mock}/>
+      <Reader match={match} fetchPost={mock}/>
     )
 
     expect(mock).toBeCalledWith(1)
@@ -67,7 +67,37 @@ describe('Reader', () => {
     const mock = jest.fn()
 
     renderer.create(
-      <Reader match={match} fetch={mock}/>
+      <Reader match={match} fetchPost={mock}/>
+    )
+
+    expect(mock).not.toBeCalled()
+  })
+
+  it('fetchs recommends on componentDidMount when id is given', () => {
+    const match = {
+      params: {
+        id: 1
+      }
+    }
+
+    const mock = jest.fn()
+
+    renderer.create(
+      <Reader match={match} fetchRecommends={mock}/>
+    )
+
+    expect(mock).toBeCalledWith(1)
+  })
+
+  it('does not fetch post on componentDidMount when id is missing', () => {
+    const match = {
+      params: { }
+    }
+
+    const mock = jest.fn()
+
+    renderer.create(
+      <Reader match={match} fetchRecommends={mock}/>
     )
 
     expect(mock).not.toBeCalled()
