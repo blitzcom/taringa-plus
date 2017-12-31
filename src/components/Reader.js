@@ -88,7 +88,7 @@ export class Reader extends Component {
 
             {
               comments.map(comment => (
-                <Comment>
+                <Comment key={comment.id}>
                   <Comment.Avatar src={comment.owner.avatar.big}/>
                   <Comment.Content>
                     <Comment.Author as='a'>
