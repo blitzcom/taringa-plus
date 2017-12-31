@@ -1,5 +1,6 @@
 import React from 'react'
-import { Card, Loader, Message } from 'semantic-ui-react'
+import { Card, Message } from 'semantic-ui-react'
+import _ from 'lodash'
 
 import Post from './Post'
 
@@ -8,7 +9,13 @@ export const Posts = (props) => {
 
   if (fetchControl.status === 'fetching') {
     return (
-      <Loader active inline='centered'/>
+      <Card.Group itemsPerRow={4}>
+        {
+          _.times(8, (i) => ({ id: i})).map(post =>(
+            <Post key={post.id} placeholder/>
+          ))
+        }
+      </Card.Group>
     )
   }
 

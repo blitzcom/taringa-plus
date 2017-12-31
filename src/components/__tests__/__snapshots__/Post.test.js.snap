@@ -9,6 +9,11 @@ exports[`Renders Post 1`] = `
   <img
     className="ui image"
     src=""
+    style={
+      Object {
+        "height": 199.8,
+      }
+    }
   />
   <div
     className="content"

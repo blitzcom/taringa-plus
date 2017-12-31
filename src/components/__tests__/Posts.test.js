@@ -53,7 +53,7 @@ describe('Posts component', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('renders loader when fetching posts', () => {
+  it('renders placeholder when fetching posts', () => {
     const control = {
       status: 'fetching',
       error: ''
