@@ -1,14 +1,26 @@
 import React, { Component } from 'react'
+import TimeAgo from 'react-timeago'
 import { connect } from 'react-redux'
-import { Item, Loader, Message } from 'semantic-ui-react'
+import {
+  Comment,
+  Header,
+  Item,
+  Loader,
+  Message
+} from 'semantic-ui-react'
 
 import './Reader.css'
+import { esFormatter } from '../Utils'
 
 import Recommend from './Recommend'
+
 import { fetch as fetchRecommends } from '../actions/recommends'
+import { fetch as fetchComments } from '../actions/comments'
 import * as actions from '../actions/reader'
+
 import { defaultSelector, controlSelector } from '../selectors/reader'
 import { recommendsSelector } from '../selectors/recommends'
+import { commentsSelector } from '../selectors/comments'
 
 import { toHTML } from '../BBCodeParser'
 
@@ -19,8 +31,11 @@ export class Reader extends Component {
     const { match } = this.props
 
     if (match && match.params && match.params.id) {
-      this.props.fetchPost(match.params.id)
-      this.props.fetchRecommends(match.params.id)
+      const id = match.params.id
+
+      this.props.fetchPost(id)
+      this.props.fetchRecommends(id)
+      this.props.fetchComments(id)
     }
 
     window.scrollTo(0, 0)
@@ -30,14 +45,18 @@ export class Reader extends Component {
     const { match } = this.props
 
     if (match.params.id !== nextProps.match.params.id) {
-      this.props.fetchPost(nextProps.match.params.id)
-      this.props.fetchRecommends(nextProps.match.params.id)
+      const id = match.params.id
+
+      this.props.fetchPost(id)
+      this.props.fetchRecommends(id)
+      this.props.fetchComments(id)
+
       window.scrollTo(0, 0)
     }
   }
 
   render () {
-    const { control, post, recommends } = this.props
+    const { control, post, recommends, comments } = this.props
 
     if (!control) {
       return null
@@ -62,10 +81,38 @@ export class Reader extends Component {
 
     return (
       <div className='ui grid'>
-        <div
-          className='eleven wide column'
-          dangerouslySetInnerHTML={createMarkup(post.body)}
-        />
+        <div className='eleven wide column'>
+          <div dangerouslySetInnerHTML={createMarkup(post.body)}/>
+          <Comment.Group>
+            <Header dividing>Comentarios</Header>
+
+            {
+              comments.map(comment => (
+                <Comment key={comment.id}>
+                  <Comment.Avatar src={comment.owner.avatar.big}/>
+                  <Comment.Content>
+                    <Comment.Author as='a'>
+                      {comment.owner.nick}
+                    </Comment.Author>
+                    <Comment.Metadata>
+                      <TimeAgo
+                        date={comment.created}
+                        formatter={esFormatter}
+                      />
+                    </Comment.Metadata>
+                    <Comment.Text>
+                      {comment.body}
+                    </Comment.Text>
+                    <Comment.Actions>
+                      <Comment.Action>Responder</Comment.Action>
+                    </Comment.Actions>
+                  </Comment.Content>
+                </Comment>
+              ))
+            }
+
+          </Comment.Group>
+        </div>
         <div
           className='five wide column'
         >
@@ -85,18 +132,22 @@ export class Reader extends Component {
 Reader.defaultProps = {
   fetchPost: () => {},
   fetchRecommends: () => {},
+  fetchComments: () => {},
   recommends: {
     posts: []
-  }
+  },
+  comments: []
 }
 
 const mapStateToProps = (state, props) => ({
+  comments: commentsSelector(state),
   control: controlSelector(state, props),
   post: defaultSelector(state, props),
   recommends: recommendsSelector(state)
 })
 
 const mapDispatchToProps = {
+  fetchComments: fetchComments,
   fetchPost: actions.fetch,
   fetchRecommends: fetchRecommends
 }
