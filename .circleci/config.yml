@@ -21,7 +21,8 @@ jobs:
         - image: circleci/node:latest
     steps:
       - restore_cache:
-          keys: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
             - v1-packages-{{ checksum "yarn.lock" }}
@@ -37,7 +38,8 @@ jobs:
         - image: circleci/node:latest
     steps:
       - restore_cache:
-          keys: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
             - v1-packages-{{ checksum "yarn.lock" }}
@@ -49,7 +51,8 @@ jobs:
         - image: circleci/node:latest
     steps:
       - restore_cache:
-          keys: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
             - v1-packages-{{ checksum "yarn.lock" }}
