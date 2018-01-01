@@ -1,0 +1,71 @@
+defaults: &defaults
+  working_directory: ~/repo
+
+version: 2
+
+jobs:
+  checkout_code:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo
+
+  packages:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: v1-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  build:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-packages-{{ checksum "yarn.lock" }}
+      - run: yarn run build
+
+  test:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-packages-{{ checksum "yarn.lock" }}
+      - run: yarn test
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - checkout_code
+      - packages:
+          requires:
+            - checkout_code
+      - build:
+          requires:
+            - packages
+      - test:
+          requires:
+            - build
