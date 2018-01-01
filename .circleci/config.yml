@@ -80,6 +80,26 @@ jobs:
             git push heroku master
             heroku restart
 
+  deploy-staging:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Setup Heroku
+          command: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "99:ff:ca:84:c6:7b:d8:6c:e2:2a:a6:91:c4:e5:a0:2c"
+      - run:
+          name: Deploy develop to Heroku
+          command: |
+            git push heroku develop
+            heroku restart
+
 workflows:
   version: 2
   test-and-deploy:
@@ -94,6 +114,13 @@ workflows:
       - test:
           requires:
             - packages
+      - deploy-staging:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only: develop
       - deploy:
           requires:
             - build
