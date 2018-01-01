@@ -1,0 +1,103 @@
+defaults: &defaults
+  working_directory: ~/repo
+
+version: 2
+
+jobs:
+  checkout_code:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-code-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo
+
+  packages:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: v1-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  build:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - run: yarn run build
+
+  test:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - run: yarn test
+
+  deploy:
+    <<: *defaults
+    docker:
+        - image: circleci/node:latest
+    steps:
+      - restore_cache:
+          keys:
+            - v1-code-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Setup Heroku
+          command: bash .circleci/setup-heroku.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "99:ff:ca:84:c6:7b:d8:6c:e2:2a:a6:91:c4:e5:a0:2c"
+      - run:
+          name: Deploy master to Heroku
+          command: |
+            git push heroku master
+            heroku restart
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - checkout_code
+      - packages:
+          requires:
+            - checkout_code
+      - build:
+          requires:
+            - packages
+      - test:
+          requires:
+            - packages
+      - deploy:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only: master
