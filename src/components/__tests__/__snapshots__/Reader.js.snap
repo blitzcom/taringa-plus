@@ -36,8 +36,23 @@ exports[`Reader renders 1`] = `
 
 exports[`Reader renders loader when fetching 1`] = `
 <div
-  className="ui active centered inline loader"
-/>
+  className="ui grid"
+>
+  <div
+    className="eleven wide column"
+  >
+    <div
+      className="ui active centered inline loader"
+    />
+  </div>
+  <div
+    className="five wide column"
+  >
+    <div
+      className="ui items"
+    />
+  </div>
+</div>
 `;
 
 exports[`Reader renders message error 1`] = `

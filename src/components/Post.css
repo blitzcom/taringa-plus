@@ -1,13 +1,3 @@
-@keyframes placeholderShimmer {
-  0% {
-    background-position: -200px 0
-  }
-
-  100% {
-    background-position: 200px 0
-  }
-}
-
 .animated-background {
   animation-duration: 1s;
   animation-fill-mode: forwards;
@@ -19,11 +9,6 @@
   background-size: 800px 104px;
   height: 362.95px;
   position: relative;
-}
-
-.bg-masker {
-  background: white;
-  position: absolute;
 }
 
 .ph-post-img {

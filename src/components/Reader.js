@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import TimeAgo from 'react-timeago'
 import { connect } from 'react-redux'
@@ -55,17 +56,37 @@ export class Reader extends Component {
     }
   }
 
+  renderRecommends () {
+    const { recommends } = this.props
+
+    if (recommends.status === 'fetching') {
+      return (
+        <Item.Group>
+          {
+            _.times(20, (i) => ({ id: i})).map(item => (
+              <Recommend key={item.id} placeholder/>
+            ))
+          }
+        </Item.Group>
+      )
+    }
+
+    return (
+      <Item.Group>
+        {
+          recommends.posts.map(post => (
+            <Recommend key={post.id} {...post}/>
+          ))
+        }
+      </Item.Group>
+    )
+  }
+
   render () {
-    const { control, post, recommends, comments } = this.props
+    const { control, post, comments } = this.props
 
     if (!control) {
       return null
-    }
-
-    if (control.status === 'fetching') {
-      return (
-        <Loader active inline='centered'/>
-      )
     }
 
     if (control.status === 'failure') {
@@ -82,47 +103,50 @@ export class Reader extends Component {
     return (
       <div className='ui grid'>
         <div className='eleven wide column'>
-          <div dangerouslySetInnerHTML={createMarkup(post.body)}/>
-          <Comment.Group>
-            <Header dividing>Comentarios</Header>
-
-            {
-              comments.map(comment => (
-                <Comment key={comment.id}>
-                  <Comment.Avatar src={comment.owner.avatar.big}/>
-                  <Comment.Content>
-                    <Comment.Author as='a'>
-                      {comment.owner.nick}
-                    </Comment.Author>
-                    <Comment.Metadata>
-                      <TimeAgo
-                        date={comment.created}
-                        formatter={esFormatter}
-                      />
-                    </Comment.Metadata>
-                    <Comment.Text>
-                      {comment.body}
-                    </Comment.Text>
-                    <Comment.Actions>
-                      <Comment.Action>Responder</Comment.Action>
-                    </Comment.Actions>
-                  </Comment.Content>
-                </Comment>
-              ))
-            }
-
-          </Comment.Group>
+          {
+            control.status === 'fetching' && <Loader active inline='centered'/>
+          }
+          {
+            (control.status === 'success' && post) && (
+              <div dangerouslySetInnerHTML={createMarkup(post.body)}/>
+            )
+          }
+          {
+            control.status === 'success' && (
+              <Comment.Group>
+                <Header dividing>Comentarios</Header>
+                {
+                  comments.map(comment => (
+                    <Comment key={comment.id}>
+                      <Comment.Avatar src={comment.owner.avatar.big}/>
+                      <Comment.Content>
+                        <Comment.Author as='a'>
+                          {comment.owner.nick}
+                        </Comment.Author>
+                        <Comment.Metadata>
+                          <TimeAgo
+                            date={comment.created}
+                            formatter={esFormatter}
+                          />
+                        </Comment.Metadata>
+                        <Comment.Text>
+                          {comment.body}
+                        </Comment.Text>
+                        <Comment.Actions>
+                          <Comment.Action>Responder</Comment.Action>
+                        </Comment.Actions>
+                      </Comment.Content>
+                    </Comment>
+                  ))
+                }
+              </Comment.Group>
+            )
+          }
         </div>
         <div
           className='five wide column'
         >
-          <Item.Group>
-            {
-              recommends.posts.map(post => (
-                <Recommend key={post.id} {...post}/>
-              ))
-            }
-          </Item.Group>
+          { this.renderRecommends() }
         </div>
       </div>
     )
