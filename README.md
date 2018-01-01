@@ -1,5 +1,5 @@
 # Taringa Plus!
-[![CircleCI](https://circleci.com/gh/K-Eo/taringa-plus/tree/master.svg?style=svg)](https://circleci.com/gh/K-Eo/taringa-plus/tree/master)
+[![CircleCI](https://circleci.com/gh/K-Eo/taringa-plus.svg?style=svg)](https://circleci.com/gh/K-Eo/taringa-plus)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
