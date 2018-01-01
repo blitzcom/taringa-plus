@@ -101,7 +101,7 @@ jobs:
       - run:
           name: Deploy develop to Heroku
           command: |
-            git push heroku develop:master
+            git push heroku master
             heroku restart
 
 workflows:
