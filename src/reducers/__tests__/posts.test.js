@@ -20,4 +20,17 @@ describe('posts entities reducer', () => {
       2: { id: 2, foo: 'baz' }
     })
   })
+
+  it('handles section FETCH_REQUEST', () => {
+    const action = {
+      type: types.REMOVE_ALL
+    }
+
+    const state = {
+      1: { id: 1, foo: 'bar' },
+      2: { id: 2, foo: 'baz' }
+    }
+
+    expect(postsEntities(state, action)).toEqual({})     
+  })
 })

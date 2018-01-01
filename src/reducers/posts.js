@@ -12,6 +12,8 @@ export const postsEntities = (state = {}, action) => {
   switch (action.type) {
     case types.ADD:
       return _.assign({}, state, reducePostsPage(action.posts))
+    case types.REMOVE_ALL:
+      return {}
     default:
       return state
   }

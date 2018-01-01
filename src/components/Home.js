@@ -8,6 +8,11 @@ import * as actions from '../actions/sections'
 export class Home extends Component {
   componentDidMount () {
     window.scrollTo(0, 0)
+    this.props.clear()
+  }
+
+  componentWillUnmount () {
+    this.props.clear()
   }
 
   render () {
@@ -30,6 +35,7 @@ export class Home extends Component {
 }
 
 Home.defaultProps = {
+  clear: () => {},
   fetch: () => {},
   sections: []
 }

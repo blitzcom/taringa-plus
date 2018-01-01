@@ -3,6 +3,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
+import { REMOVE_ALL } from '../../types/posts'
 import * as types from '../../types/sections'
 import * as actions from '../sections'
 
@@ -39,6 +40,17 @@ describe('Sections Actions', () => {
   const middlewares = [thunk.withExtraArgument(axios)]
   const mockStore = configureMockStore(middlewares)
   const mock = new MockAdapter(axios)
+
+  it('clears posts ids', () => {
+    const store = mockStore()
+
+    return store.dispatch(actions.clear()).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: types.CLEAR_POSTS_IDS },
+        { type: REMOVE_ALL }
+      ])
+    })
+  })
 
   describe('Fetch sections async', () => {
     afterEach(() => {

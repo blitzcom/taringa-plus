@@ -5,6 +5,10 @@ export const add = (post) => ({
   post: post
 })
 
+export const removeAll = () => ({
+  type: types.REMOVE_ALL
+})
+
 export const fetchRequest = (id) => ({
   type: types.FETCH_REQUEST,
   id: id
@@ -23,6 +27,7 @@ export const fetchFailure = (id, message) => ({
 
 export const fetch = (id) => {
   return (dispatch, getState, axios) => {
+    dispatch(removeAll())
     dispatch(fetchRequest(id))
 
     return axios.get(`/post/view/${id}`)
