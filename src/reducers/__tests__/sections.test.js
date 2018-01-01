@@ -1,6 +1,5 @@
 import { sectionsControl } from '../sections'
 import * as types from '../../types/sections'
-import { REMOVE_ALL } from '../../types/reader'
 
 const state = {
   1: {
@@ -122,9 +121,9 @@ describe('Sections control reducer', () => {
     })
   })
 
-  it('handles REMOVE_ALL from reader', () => {
+  it('handles CLEAR_POSTS', () => {
     const action = {
-      type: REMOVE_ALL
+      type: types.CLEAR_POSTS_IDS
     }
 
     const nextState = {

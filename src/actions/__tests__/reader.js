@@ -3,8 +3,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import { REMOVE_ALL as REMOVE_ALL_POSTS } from '../../types/posts'
-import { REMOVE_ALL as REMOVE_ALL_READERS } from '../../types/reader'
+import { REMOVE_ALL } from '../../types/reader'
 import * as types from '../../types/reader'
 import * as actions from '../reader'
 
@@ -60,8 +59,7 @@ describe('Reader actions', () => {
 
       return store.dispatch(actions.fetch(1)).then(() => {
         expect(store.getActions()).toEqual([
-          { type: REMOVE_ALL_POSTS },
-          { type: REMOVE_ALL_READERS },
+          { type: REMOVE_ALL },
           { type: types.FETCH_REQUEST, id: 1 },
           { type: types.ADD, post: { id: 1, foo: 'bar' } },
           { type: types.FETCH_SUCCESS, id: 1 }
@@ -77,8 +75,7 @@ describe('Reader actions', () => {
 
       return store.dispatch(actions.fetch(1)).then(() => {
         expect(store.getActions()).toEqual([
-          { type: REMOVE_ALL_POSTS },
-          { type: REMOVE_ALL_READERS },
+          { type: REMOVE_ALL },
           { type: types.FETCH_REQUEST, id: 1 },
           { type: types.FETCH_FAILURE, id: 1 , message: 'Network Error' }
         ])

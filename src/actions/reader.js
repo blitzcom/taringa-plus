@@ -28,7 +28,6 @@ export const fetchFailure = (id, message) => ({
 
 export const fetch = (id) => {
   return (dispatch, getState, axios) => {
-    dispatch(removeAllPosts())
     dispatch(removeAll())
     dispatch(fetchRequest(id))
 

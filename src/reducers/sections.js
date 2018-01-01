@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import * as types from '../types/sections'
-import { REMOVE_ALL } from '../types/reader'
 
 const initialState = {
   1: {
@@ -72,7 +71,7 @@ export const sectionsControl = (state = initialState, action) => {
     case types.FETCH_FAILURE:
       return _.assign({}, state,
         { [action.id]: sectionReducer(state[action.id], action) })
-    case REMOVE_ALL:
+    case types.CLEAR_POSTS_IDS:
       return removePostsIds(state)
     default:
       return state
