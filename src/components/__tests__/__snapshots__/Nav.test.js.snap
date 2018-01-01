@@ -2,7 +2,7 @@
 
 exports[`Render nav 1`] = `
 <div
-  className="ui large top fixed menu"
+  className="ui large inverted top fixed menu"
 >
   <div
     className="ui container"
