@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import * as types from '../types/sections'
+import { REMOVE_ALL } from '../types/reader'
 
 const initialState = {
   1: {
@@ -57,6 +58,13 @@ const sectionReducer = (state, action) => {
   }
 }
 
+const removePostsIds = (state) => {
+  return _.reduce(_.values(state), (container, section) => {
+    const nextSection = _.assign({}, section, { postsIds: [] })
+    return _.assign({}, container, { [section.id]: nextSection })
+  }, {})
+}
+
 export const sectionsControl = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_REQUEST:
@@ -64,6 +72,8 @@ export const sectionsControl = (state = initialState, action) => {
     case types.FETCH_FAILURE:
       return _.assign({}, state,
         { [action.id]: sectionReducer(state[action.id], action) })
+    case REMOVE_ALL:
+      return removePostsIds(state)
     default:
       return state
   }

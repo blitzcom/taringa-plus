@@ -1,5 +1,6 @@
 import { sectionsControl } from '../sections'
 import * as types from '../../types/sections'
+import { REMOVE_ALL } from '../../types/reader'
 
 const state = {
   1: {
@@ -106,6 +107,58 @@ describe('Sections control reducer', () => {
         name: 'Foo',
         postsIds: [],
         status: 'failure',
+        trending: true
+      },
+      2: {
+        category: 'bar',
+        count: 8,
+        error: '',
+        id: 2,
+        name: 'Bar',
+        postsIds: [],
+        status: 'success',
+        trending: false
+      }
+    })
+  })
+
+  it('handles REMOVE_ALL from reader', () => {
+    const action = {
+      type: REMOVE_ALL
+    }
+
+    const nextState = {
+      1: {
+        category: null,
+        count: 8,
+        error: '',
+        id: 1,
+        name: 'Foo',
+        postsIds: [1, 2, 3, 4, 5],
+        status: 'success',
+        trending: true
+      },
+      2: {
+        category: 'bar',
+        count: 8,
+        error: '',
+        id: 2,
+        name: 'Bar',
+        postsIds: [6, 7, 8, 9, 10],
+        status: 'success',
+        trending: false
+      }
+    }
+
+    expect(sectionsControl(nextState, action)).toEqual({
+      1: {
+        category: null,
+        count: 8,
+        error: '',
+        id: 1,
+        name: 'Foo',
+        postsIds: [],
+        status: 'success',
         trending: true
       },
       2: {
