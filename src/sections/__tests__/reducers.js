@@ -121,9 +121,10 @@ describe('Sections control reducer', () => {
     })
   })
 
-  it('handles CLEAR_POSTS', () => {
+  it('handles RESTORE', () => {
     const action = {
-      type: types.CLEAR_POSTS_IDS
+      type: types.RESTORE,
+      id: 1
     }
 
     const nextState = {
@@ -166,7 +167,7 @@ describe('Sections control reducer', () => {
         error: '',
         id: 2,
         name: 'Bar',
-        postsIds: [],
+        postsIds: [6, 7, 8, 9, 10],
         status: 'success',
         trending: false
       }

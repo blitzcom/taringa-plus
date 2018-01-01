@@ -14,6 +14,8 @@ export const postsEntities = (state = {}, action) => {
       return _.assign({}, state, reducePostsPage(action.posts))
     case types.REMOVE_ALL:
       return {}
+    case types.REMOVE_IDS:
+      return _.omit(state, action.ids)
     default:
       return state
   }

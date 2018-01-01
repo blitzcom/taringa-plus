@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import { REMOVE_ALL } from '../../posts/types'
+import { REMOVE_IDS } from '../../posts/types'
 import * as types from '../types'
 import * as actions from '../actions'
 
@@ -42,12 +42,20 @@ describe('Sections Actions', () => {
   const mock = new MockAdapter(axios)
 
   it('clears posts ids', () => {
-    const store = mockStore()
+    const store = mockStore({
+      control: {
+        sections: {
+          1: {
+            postsIds: [1, 2, 3, 4]
+          }
+        }
+      }
+    })
 
-    return store.dispatch(actions.clear()).then(() => {
+    return store.dispatch(actions.clear(1)).then(() => {
       expect(store.getActions()).toEqual([
-        { type: types.CLEAR_POSTS_IDS },
-        { type: REMOVE_ALL }
+        { type: types.RESTORE, id: 1 },
+        { type: REMOVE_IDS, ids: [1, 2, 3, 4] }
       ])
     })
   })
@@ -61,10 +69,20 @@ describe('Sections Actions', () => {
       mock.onGet('/post/recent/view/foo')
         .reply(200, data)
 
-      const store = mockStore()
+      const store = mockStore({
+        control: {
+          sections: {
+            1: {
+              postsIds: [1, 2, 3, 4]
+            }
+          }
+        }
+      })
 
       return store.dispatch(actions.fetch(1, 'foo', 1)).then(() => {
         expect(store.getActions()).toEqual([
+          { type: types.RESTORE, id: 1},
+          { type: REMOVE_IDS, ids: [1, 2, 3, 4] },
           { type: types.FETCH_REQUEST, id: 1 },
           { type: 'posts/ADD', posts: data },
           { type: types.FETCH_SUCCESS, id: 1, posts: [1, 2, 3] }
@@ -76,10 +94,20 @@ describe('Sections Actions', () => {
       mock.onGet('/post/trending/view')
         .reply(200, data)
 
-      const store = mockStore()
+      const store = mockStore({
+        control: {
+          sections: {
+            1: {
+              postsIds: [1, 2, 3, 4]
+            }
+          }
+        }
+      })
 
       return store.dispatch(actions.fetch(1, 'foo', 1, true)).then(() => {
         expect(store.getActions()).toEqual([
+          { type: types.RESTORE, id: 1},
+          { type: REMOVE_IDS, ids: [1, 2, 3, 4] },
           { type: types.FETCH_REQUEST, id: 1 },
           { type: 'posts/ADD', posts: data },
           { type: types.FETCH_SUCCESS, id: 1, posts: [1, 2, 3] }
@@ -91,10 +119,20 @@ describe('Sections Actions', () => {
       mock.onGet('/post/recent/view/foo')
         .networkError()
 
-      const store = mockStore()
+      const store = mockStore({
+        control: {
+          sections: {
+            1: {
+              postsIds: [1, 2, 3, 4]
+            }
+          }
+        }
+      })
 
       return store.dispatch(actions.fetch(1, 'foo', 1)).then(() => {
         expect(store.getActions()).toEqual([
+          { type: types.RESTORE, id: 1},
+          { type: REMOVE_IDS, ids: [1, 2, 3, 4] },
           { type: types.FETCH_REQUEST, id: 1 },
           { type: types.FETCH_FAILURE, id: 1, message: 'Network Error' }
         ])

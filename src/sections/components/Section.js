@@ -9,6 +9,10 @@ export class Section extends Component {
     this.props.fetch(id, category, count, trending)
   }
 
+  componentWillUnmount () {
+    this.props.clear(this.props.id)
+  }
+
   render () {
     const { error, name, status, posts } = this.props
 
@@ -33,7 +37,8 @@ Section.defaultProps = {
   fetch: () => {},
   name: '#Section',
   posts: [],
-  status: 'success'
+  status: 'success',
+  clear: () => {}
 }
 
 export default Section

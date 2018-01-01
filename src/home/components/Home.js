@@ -8,15 +8,10 @@ import * as actions from '../../sections/actions'
 export class Home extends Component {
   componentDidMount () {
     window.scrollTo(0, 0)
-    this.props.clear()
-  }
-
-  componentWillUnmount () {
-    this.props.clear()
   }
 
   render () {
-    const { sections, fetch } = this.props
+    const { sections, fetch, clear } = this.props
 
     return (
       <div>
@@ -26,6 +21,7 @@ export class Home extends Component {
               key={section.id}
               {...section}
               fetch={fetch}
+              clear={clear}
             />
           ))
         }

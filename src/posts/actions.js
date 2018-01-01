@@ -8,3 +8,8 @@ export const add = (posts) => ({
 export const removeAll = (posts) => ({
   type: types.REMOVE_ALL
 })
+
+export const removeIds = (ids) => ({
+  type: types.REMOVE_IDS,
+  ids: ids
+})

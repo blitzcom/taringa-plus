@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import * as types from './types'
-import { add, removeAll as removeAllPosts } from '../posts/actions'
+import { add, removeIds } from '../posts/actions'
 
-export const clearPostsIds = () => ({
-  type: types.CLEAR_POSTS_IDS
+export const restore = (id) => ({
+  type: types.RESTORE,
+  id: id
 })
 
 export const fetchRequest = (id) => ({
@@ -23,16 +24,16 @@ export const fetchFailure = (id, message) => ({
   message: message
 })
 
-export const clear = () => {
-  return (dispatch) => {
-    dispatch(clearPostsIds())
-    dispatch(removeAllPosts())
-    return Promise.resolve()
-  }
+export const clear = id => (dispatch, getState) => {
+  const ids = getState().control.sections[id].postsIds
+  dispatch(restore(id))
+  dispatch(removeIds(ids))
+  return Promise.resolve()
 }
 
 export const fetch = (id, category, count, trending = false) => {
   return (dispatch, getState, axios) => {
+    dispatch(clear(id))
     dispatch(fetchRequest(id))
 
     const url = trending ? '/post/trending/view' : `/post/recent/view/${category}`

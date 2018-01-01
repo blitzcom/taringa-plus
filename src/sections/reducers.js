@@ -57,13 +57,6 @@ const sectionReducer = (state, action) => {
   }
 }
 
-const removePostsIds = (state) => {
-  return _.reduce(_.values(state), (container, section) => {
-    const nextSection = _.assign({}, section, { postsIds: [] })
-    return _.assign({}, container, { [section.id]: nextSection })
-  }, {})
-}
-
 export const sectionsControl = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_REQUEST:
@@ -71,8 +64,9 @@ export const sectionsControl = (state = initialState, action) => {
     case types.FETCH_FAILURE:
       return _.assign({}, state,
         { [action.id]: sectionReducer(state[action.id], action) })
-    case types.CLEAR_POSTS_IDS:
-      return removePostsIds(state)
+    case types.RESTORE:
+      return _.assign({}, state,
+        { [action.id]: _.assign({}, state[action.id], { postsIds: [] }) })
     default:
       return state
   }
