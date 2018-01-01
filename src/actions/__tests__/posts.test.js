@@ -14,4 +14,10 @@ describe('add actions', () => {
       posts: data
     })
   })
+
+  it('creates an action to remove all posts', () => {
+    expect(actions.removeAll()).toEqual({
+      type: types.REMOVE_ALL
+    })
+  })
 })

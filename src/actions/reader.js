@@ -1,8 +1,13 @@
 import * as types from '../types/reader'
+import { removeAll as removeAllPosts } from './posts'
 
 export const add = (post) => ({
   type: types.ADD,
   post: post
+})
+
+export const removeAll = () => ({
+  type: types.REMOVE_ALL
 })
 
 export const fetchRequest = (id) => ({
@@ -23,6 +28,8 @@ export const fetchFailure = (id, message) => ({
 
 export const fetch = (id) => {
   return (dispatch, getState, axios) => {
+    dispatch(removeAllPosts())
+    dispatch(removeAll())
     dispatch(fetchRequest(id))
 
     return axios.get(`/post/view/${id}`)
