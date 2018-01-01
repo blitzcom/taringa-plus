@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Nav = (props) => {
   return (
-    <Menu fixed='top' size='large'>
+    <Menu fixed='top' size='large' inverted>
       <Container>
         <Menu.Item header as={Link} to='/'>Taringa Plus!</Menu.Item>
       </Container>
