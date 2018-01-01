@@ -1,5 +1,4 @@
 import * as types from '../types/reader'
-import { removeAll as removeAllPosts } from './posts'
 
 export const add = (post) => ({
   type: types.ADD,
