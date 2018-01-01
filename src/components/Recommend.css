@@ -1,3 +1,52 @@
 .recommend-title {
   font-size: 1.12rem !important;
 }
+
+.recommend-animated-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eee 8%, #ddd, 18%, #eee 33%);
+  background-size: 800px 104px;
+  height: 84px;
+  width: 100%;
+  position: relative;
+}
+
+.bg-masker.recommend-vertical-separator {
+  left: 80px;
+  width: 21px;
+  top: 0;
+  height: 100%;
+}
+
+.bg-masker.recommend-title-separator {
+  left: 101px;
+  right: 0;
+  top: 35px;
+  height: 4px;
+}
+
+.bg-masker.recommend-owner-separator {
+  left: 101px;
+  right: 0;
+  top: 59px;
+  height: 4px;
+}
+
+.bg-masker.recommend-owner-right-separator {
+  right: 0;
+  top: 39px;
+  height: 20px;
+  width: 80px;
+}
+
+.bg-masker.recommend-visits-right-separator {
+  right: 0;
+  top: 63px;
+  height: 21px;
+  width: 140px;
+}

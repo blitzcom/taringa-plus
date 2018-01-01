@@ -33,6 +33,8 @@ export const readerControl = (state = {}, action) => {
     case types.FETCH_FAILURE:
       return _.assign({}, state,
         { [action.id]: postControl(state[action.id], action) })
+    case types.REMOVE_ALL:
+      return {}
     default:
       return state
   }

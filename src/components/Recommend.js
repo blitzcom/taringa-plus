@@ -6,6 +6,20 @@ import './Recommend.css'
 import { getPostImageURL } from '../Utils'
 
 const PostFlat = (props) => {
+  if (props.placeholder) {
+    return (
+      <Item>
+        <div className='recommend-animated-background'>
+          <div className='bg-masker recommend-vertical-separator'/>
+          <div className='bg-masker recommend-title-separator'/>
+          <div className='bg-masker recommend-owner-separator'/>
+          <div className='bg-masker recommend-owner-right-separator'/>
+          <div className='bg-masker recommend-visits-right-separator'/>
+        </div>
+      </Item>
+    )
+  }
+
   return (
     <Item>
       <Item.Image size='tiny' src={getPostImageURL(props, '1:1')}/>
