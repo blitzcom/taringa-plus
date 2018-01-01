@@ -46,10 +46,283 @@ exports[`Posts component renders error message when fetching posts fails 1`] = `
 </div>
 `;
 
-exports[`Posts component renders loader when fetching posts 1`] = `
+exports[`Posts component renders placeholder when fetching posts 1`] = `
 <div
-  className="ui active centered inline loader"
-/>
+  className="ui four cards"
+>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+  <div
+    className="ui card"
+    href={undefined}
+    onClick={[Function]}
+  >
+    <div
+      className="animated-background"
+    >
+      <div
+        className="ph-post-img"
+      />
+      <div
+        className="bg-masker top-separator"
+      />
+      <div
+        className="bg-masker left-separator"
+      />
+      <div
+        className="bg-masker right-separator"
+      />
+      <div
+        className="bg-masker mid-separator"
+      />
+      <div
+        className="bg-masker date-separator"
+      />
+      <div
+        className="bg-masker extra-separator"
+      />
+      <div
+        className="bg-masker bottom-separator"
+      />
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Posts component renders posts 1`] = `
@@ -64,6 +337,11 @@ exports[`Posts component renders posts 1`] = `
     <img
       className="ui image"
       src=""
+      style={
+        Object {
+          "height": 199.8,
+        }
+      }
     />
     <div
       className="content"
@@ -104,6 +382,11 @@ exports[`Posts component renders posts 1`] = `
     <img
       className="ui image"
       src=""
+      style={
+        Object {
+          "height": 199.8,
+        }
+      }
     />
     <div
       className="content"

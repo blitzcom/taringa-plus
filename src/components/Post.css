@@ -1,0 +1,84 @@
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -200px 0
+  }
+
+  100% {
+    background-position: 200px 0
+  }
+}
+
+.animated-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eee 8%, #ddd, 18%, #eee 33%);
+  background-size: 800px 104px;
+  height: 362.95px;
+  position: relative;
+}
+
+.bg-masker {
+  background: white;
+  position: absolute;
+}
+
+.ph-post-img {
+  height: 199.375px;
+}
+
+.bg-masker.top-separator {
+  height: 14px;
+  left: 0;
+  right: 0;
+  top: 199.375px;
+}
+
+.bg-masker.left-separator {
+  border-bottom-left-radius: 0.28571429rem;
+  bottom: 0;
+  left: 0;
+  top: 199.375px;
+  width: 14px;
+}
+
+.bg-masker.right-separator {
+  border-bottom-right-radius: 0.28571429rem;
+  bottom: 0;
+  right: 0;
+  top: 199.375px;
+  width: 14px;
+}
+
+.bg-masker.mid-separator {
+  height: 8px;
+  left: 0;
+  right: 0;
+  top: 256.375px;
+}
+
+.bg-masker.date-separator {
+  height: 18px;
+  right: 0;
+  bottom: 81px;
+  width: 140px;
+}
+
+.bg-masker.extra-separator {
+  height: 32px;
+  left: 0;
+  right: 0;
+  bottom: 49px;
+}
+
+.bg-masker.bottom-separator {
+  border-bottom-left-radius: 0.38571429rem;
+  border-bottom-right-radius: 0.38571429rem;
+  bottom: 0;
+  height: 10.5px;
+  left: 0;
+  right: 0;
+}
