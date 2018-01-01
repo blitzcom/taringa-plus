@@ -45,7 +45,7 @@ export class Reader extends Component {
     const { match } = this.props
 
     if (match.params.id !== nextProps.match.params.id) {
-      const id = match.params.id
+      const id = nextProps.match.params.id
 
       this.props.fetchPost(id)
       this.props.fetchRecommends(id)

@@ -1,7 +1,11 @@
 import React from 'react'
+import Enzyme, { mount } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 import renderer from 'react-test-renderer'
 
 import { Reader } from '../Reader'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('Reader', () => {
   it('renders', () => {
@@ -113,5 +117,40 @@ describe('Reader', () => {
     )
 
     expect(mock).toBeCalledWith(0, 0)
+  })
+
+  it('starts fetching next post', () => {
+    const mockPost = jest.fn()
+    const mockRecommends = jest.fn()
+    const mockComments = jest.fn()
+
+    const match = {
+      params: {
+        id: 1
+      }
+    }
+
+    const wrapper = mount(
+      <Reader
+        fetchComments={mockComments}
+        fetchPost={mockPost}
+        fetchRecommends={mockRecommends}
+        match={match}
+      />
+    )
+
+    expect(mockComments).toBeCalledWith(1)
+    expect(mockPost).toBeCalledWith(1)
+    expect(mockRecommends).toBeCalledWith(1)
+
+    mockComments.mockClear()
+    mockPost.mockClear()
+    mockRecommends.mockClear()
+
+    wrapper.setProps({ match: { params: { id: 2 } } })
+
+    expect(mockComments).toBeCalledWith(2)
+    expect(mockPost).toBeCalledWith(2)
+    expect(mockRecommends).toBeCalledWith(2)
   })
 })
