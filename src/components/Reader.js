@@ -85,8 +85,6 @@ export class Reader extends Component {
   render () {
     const { control, post, comments } = this.props
 
-    console.log(this.props)
-
     if (!control) {
       return null
     }
