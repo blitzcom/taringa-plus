@@ -1,11 +1,9 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import TimeAgo from 'react-timeago'
 import { connect } from 'react-redux'
 import {
   Comment,
   Header,
-  Item,
   Loader,
   Message
 } from 'semantic-ui-react'
@@ -13,7 +11,7 @@ import {
 import './Reader.css'
 import { esFormatter } from '../../Utils'
 
-import Recommend from '../../recommends/components/Recommend'
+import Recommends from '../../recommends/components/Recommends'
 
 import { fetch as fetchRecommends } from '../../recommends/actions'
 import { fetch as fetchComments } from '../../comments/actions'
@@ -56,34 +54,14 @@ export class Reader extends Component {
     }
   }
 
-  renderRecommends () {
-    const { recommends } = this.props
-
-    if (recommends.status === 'fetching') {
-      return (
-        <Item.Group>
-          {
-            _.times(20, (i) => ({ id: i})).map(item => (
-              <Recommend key={item.id} placeholder/>
-            ))
-          }
-        </Item.Group>
-      )
-    }
-
-    return (
-      <Item.Group>
-        {
-          recommends.posts.map(post => (
-            <Recommend key={post.id} {...post}/>
-          ))
-        }
-      </Item.Group>
-    )
-  }
-
   render () {
-    const { control, post, comments } = this.props
+    const {
+      comments,
+      control,
+      dispatch,
+      post,
+      recommends
+    } = this.props
 
     if (!control) {
       return null
@@ -146,7 +124,10 @@ export class Reader extends Component {
         <div
           className='five wide column'
         >
-          { this.renderRecommends() }
+          <Recommends
+            dispatch={dispatch}
+            {...recommends}
+          />
         </div>
       </div>
     )
@@ -158,7 +139,9 @@ Reader.defaultProps = {
   fetchRecommends: () => {},
   fetchComments: () => {},
   recommends: {
-    posts: []
+    error: '',
+    posts: [],
+    status: 'success'
   },
   comments: []
 }

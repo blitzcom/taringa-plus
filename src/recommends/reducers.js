@@ -16,6 +16,8 @@ export const recommendsControl = (state = initialState, action) => {
       return _.assign({}, state, { status: 'success', postIds: action.ids })
     case types.FETCH_FAILURE:
       return _.assign({}, state, { status: 'failure', error: action.message })
+    case types.CLEAR:
+      return _.assign({}, state, { status: 'success', postIds: [] })
     default:
       return state
   }

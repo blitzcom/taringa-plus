@@ -3,6 +3,7 @@ import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
+import { REMOVE_IDS } from '../../posts/types'
 import * as types from '../types'
 import * as actions from '../actions'
 
@@ -44,10 +45,18 @@ describe('Recommends', () => {
       mock.onGet('/post/related/view/1')
         .reply(200, data)
 
-      const store = mockStore()
+      const store = mockStore({
+        control: {
+          recommends: {
+            postIds: [1, 2, 3, 4]
+          }
+        }
+      })
 
       return store.dispatch(actions.fetch(1)).then(() => {
         expect(store.getActions()).toEqual([
+          { type: types.CLEAR },
+          { type: REMOVE_IDS, ids: [1, 2, 3, 4] },
           { type: types.FETCH_REQUEST },
           { type: 'posts/ADD', posts: data },
           { type: types.FETCH_SUCCESS, ids: [1, 2, 3] }
@@ -59,10 +68,18 @@ describe('Recommends', () => {
       mock.onGet('/post/related/view/1')
         .networkError()
 
-      const store = mockStore()
+      const store = mockStore({
+        control: {
+          recommends: {
+            postIds: [1, 2, 3, 4]
+          }
+        }
+      })
 
       return store.dispatch(actions.fetch(1)).then(() => {
         expect(store.getActions()).toEqual([
+          { type: types.CLEAR },
+          { type: REMOVE_IDS, ids: [1, 2, 3, 4] },
           { type: types.FETCH_REQUEST },
           { type: types.FETCH_FAILURE, message: 'Network Error' }
         ])

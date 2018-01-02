@@ -1,6 +1,10 @@
 import _ from 'lodash'
 import * as types from './types'
-import { add } from '../posts/actions'
+import { add, removeIds } from '../posts/actions'
+
+export const clearRecommends = () => ({
+  type: types.CLEAR
+})
 
 export const fetchRequest = () => ({
   type: types.FETCH_REQUEST
@@ -16,8 +20,16 @@ export const fetchFailure = (message) => ({
   message: message
 })
 
+export const clear = () => (dispatch, getState) => {
+  const ids = getState().control.recommends.postIds
+  dispatch(clearRecommends())
+  dispatch(removeIds(ids))
+  return Promise.resolve()
+}
+
 export const fetch = (id) => {
   return (dispatch, getState, axios) => {
+    dispatch(clear())
     dispatch(fetchRequest())
 
     return axios.get(`/post/related/view/${id}`, {
