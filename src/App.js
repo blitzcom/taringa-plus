@@ -3,9 +3,9 @@ import { Container } from 'semantic-ui-react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 
-import Home from './components/Home'
-import Reader from './components/Reader'
-import Nav from './components/Nav'
+import Home from './home/components/Home'
+import Reader from './readers/components/Reader'
+import Nav from './Nav'
 
 class App extends Component {
   render() {
