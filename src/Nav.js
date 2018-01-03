@@ -1,14 +1,22 @@
 import React from 'react'
-import { Menu, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+
+import './Nav.css'
 
 const Nav = (props) => {
   return (
-    <Menu fixed='top' size='large' inverted>
-      <Container>
-        <Menu.Item header as={Link} to='/'>Taringa Plus!</Menu.Item>
-      </Container>
-    </Menu>
+    <div>
+      <div className='nav-head'>
+        <Link to='/' className='logo'/>
+      </div>
+      <nav className='navbar navbar-default main-nav'>
+        <ul className='nav navbar-nav'>
+          <li className='active'><Link to='/'>Posts</Link></li>
+          <li className=''><Link to='/'>Comunidades</Link></li>
+          <li className=''><Link to='/'>Tops</Link></li>
+        </ul>
+      </nav>
+    </div>
   )
 }
 

@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 
-import Home from './home/components/Home'
-import Reader from './readers/components/Reader'
+import Posts from './Posts'
 import Nav from './Nav'
+import Footer from './Footer'
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Nav/>
-          <Container className='app-container'>
-            <Route exact path='/' component={Home}/>
-            <Route path='/post/:id' component={Reader}/>
-          </Container>
+        <div className='container'>
+          <div className='app-decorator app-decorator-top blue-bg'/>
+          <div className='app-wrapper blue-bg'>
+            <Nav/>
+            <Route exact path='/' component={Posts}/>
+            <Footer/>
+          </div>
+          <div className='app-decorator app-decorator-bottom blue-bg'/>
         </div>
       </BrowserRouter>
     );
