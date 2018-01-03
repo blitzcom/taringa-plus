@@ -39,3 +39,45 @@
   background: white;
   position: absolute;
 }
+
+.panel-default {
+  border: none;
+}
+
+.panel {
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.panel:last-child {
+  margin-bottom: 0;
+}
+
+.panel-default .panel-heading {
+  background: rgba(217,217,217,1);
+  background: linear-gradient(to bottom, rgba(217,217,217,1) 0%, rgba(191,191,191,1) 50%, rgba(179,179,179,1) 100%);
+
+  color: #464646;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.3em;
+  padding: 5px 10px;
+  text-shadow: 0 1px 0 #ccc;
+}
+
+.panel-default .panel-body {
+  background: #e7e7e7;
+  padding: 8px;
+  border-radius: 0 0 5px 5px;
+  line-height: 1.3em;
+}
+
+.app-container .row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.app-container .row > div[class^='col-'] {
+  padding-right: 5px;
+  padding-left: 5px;
+}

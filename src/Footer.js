@@ -4,7 +4,7 @@ import './Footer.css'
 
 const Footer = () => (
   <div className='footer-content'>
-    GitHub
+    <a href='https://github.com/K-Eo/taringa-plus'>GitHub</a>
   </div>
 )
 

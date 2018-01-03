@@ -1,19 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render nav 1`] = `
-<div
-  className="ui large inverted top fixed menu"
->
+<div>
   <div
-    className="ui container"
+    className="nav-head"
   >
     <a
-      className="header item"
+      className="logo"
       href="/"
       onClick={[Function]}
-    >
-      Taringa Plus!
-    </a>
+    />
   </div>
+  <nav
+    className="navbar navbar-default main-nav"
+  >
+    <ul
+      className="nav navbar-nav"
+    >
+      <li
+        className="active"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Posts
+        </a>
+      </li>
+      <li
+        className=""
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Comunidades
+        </a>
+      </li>
+      <li
+        className=""
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Tops
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
 `;

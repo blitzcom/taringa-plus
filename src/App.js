@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
 
-import Home from './home/components/Home'
-import Reader from './readers/components/Reader'
+import Posts from './Posts'
 import Nav from './Nav'
 import Footer from './Footer'
 
@@ -15,9 +14,7 @@ class App extends Component {
           <div className='app-decorator app-decorator-top blue-bg'/>
           <div className='app-wrapper blue-bg'>
             <Nav/>
-            <div className='app-container'>
-              contenido
-            </div>
+            <Route exact path='/' component={Posts}/>
             <Footer/>
           </div>
           <div className='app-decorator app-decorator-bottom blue-bg'/>
