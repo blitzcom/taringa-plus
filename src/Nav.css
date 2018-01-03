@@ -1,0 +1,90 @@
+.nav-head {
+  height: 70px;
+  padding-top: 11px;
+}
+
+.logo {
+  background: url(./logo.png) no-repeat;
+  display: block;
+  height: 48px;
+  width: 270px;
+}
+
+.logo-fallback {
+  display: none;
+}
+
+.main-nav {
+  border-radius: 4px 4px 0 0;
+  border: none;
+  margin-bottom: 0;
+  min-height: 0;
+}
+
+.main-nav > .navbar-nav > li > a {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.main-nav > .navbar-nav > li > a:hover {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+
+.main-nav > .navbar-nav > li.active > a,
+.main-nav > .navbar-nav > li.active > a:hover,
+.main-nav > .navbar-nav > li.active > a:active {
+  background: #333;
+  color: #fff;
+  text-shadow: #000 0 1px 0;
+  box-shadow: inset 0px 2px 11px 1px rgba(0,0,0,0.5);
+}
+
+.main-nav > .navbar-nav > li:first-child > a {
+  border-radius: 4px 0 0 0;
+}
+
+.main-nav > .navbar-nav.navbar-right > li:last-child > a {
+  border-radius: 0 4px 0 0;
+}
+
+.secondary-nav {
+  background: #007394;
+  box-shadow: inset 0px 2px 5px 0px rgba(0,0,0,0.5);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px 5px 0 10px;
+  border-bottom: none;
+}
+
+.secondary-nav > li {
+  margin-right: 10px;
+  margin-bottom: -2px;
+}
+
+.secondary-nav > li > a {
+  border-radius: 0;
+  line-height: 1;
+  padding: 5px 15px;
+  background: #3b8bac;
+  color: #fff;
+  border: none;
+}
+
+.secondary-nav > li > a:hover,
+.secondary-nav > li > a:active {
+  background: #3b8bac;
+  text-decoration: underline;
+}
+
+.secondary-nav > li.active > a {
+  color: #333;
+}
+
+.secondary-nav > li.active > a:hover {
+  text-decoration: none;
+}

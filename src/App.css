@@ -1,5 +1,28 @@
+.blue-bg {
+  background-color: #004a95;
+}
+
+.app-decorator {
+  height: 13px;
+}
+
+.app-decorator-top {
+  border-radius: 10px 10px 0 0;
+}
+
+.app-decorator-bottom {
+  border-radius: 0 0 10px 10px;
+}
+
+.app-wrapper {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .app-container {
-  margin-top: 72px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
 }
 
 @keyframes placeholderShimmer {
