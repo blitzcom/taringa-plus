@@ -1,8 +1,20 @@
-.post-item,
-.post-item:visited {
+.post-item {
+  display: flex;
+  height: 18px;
+  margin-bottom: 14px;
+}
+
+.post-item a,
+.post-item a:visited {
   display: block;
-  margin-bottom: 10px;
   color: #333;
+}
+
+.post-icon {
+  height: 18px;
+  width: 18px;
+  margin: 0 4px 0 10px;
+  background: transparent url(./assets/images/icons.png) no-repeat scroll left top;
 }
 
 .post-item:last-child {

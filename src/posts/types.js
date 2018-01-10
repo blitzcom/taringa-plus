@@ -1,3 +1,3 @@
-export const ADD = 'posts/ADD'
-export const REMOVE_ALL = 'posts/REMOVE_ALL'
-export const REMOVE_IDS = 'posts/REMOVE_IDS'
+export const RECENT_FETCH_REQUEST = 'posts/RECENT_FETCH_REQUEST'
+export const RECENT_FETCH_SUCCESS = 'posts/RECENT_FETCH_SUCCESS'
+export const RECENT_FETCH_FAILURE = 'posts/RECENT_FETCH_FAILURE'

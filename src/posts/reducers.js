@@ -2,20 +2,31 @@ import _ from 'lodash'
 
 import * as types from './types'
 
-const reducePostsPage = (posts) => {
-  return _.reduce(posts, (container, post) => {
-    return _.assign({}, container, { [post.id]: post })
-  }, {})
-}
-
 export const postsEntities = (state = {}, action) => {
   switch (action.type) {
-    case types.ADD:
-      return _.assign({}, state, reducePostsPage(action.posts))
-    case types.REMOVE_ALL:
-      return {}
-    case types.REMOVE_IDS:
-      return _.omit(state, action.ids)
+    default:
+      if (action.entities && action.entities.posts) {
+        return _.merge({}, state, action.entities.posts)
+      }
+
+      return state
+  }
+}
+
+const recentControlState = {
+  error: '',
+  ids: [],
+  status: 'success'
+}
+
+export const recentControl = (state = recentControlState, action) => {
+  switch (action.type) {
+    case types.RECENT_FETCH_REQUEST:
+      return _.assign({}, state, { status: 'fetching' })
+    case types.RECENT_FETCH_SUCCESS:
+      return _.assign({}, state, { status: 'success', ids: action.result })
+    case types.RECENT_FETCH_FAILURE:
+      return _.assign({}, state, { status: 'failure', error: action.message })
     default:
       return state
   }
