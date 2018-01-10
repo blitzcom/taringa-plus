@@ -65,104 +65,135 @@ const Post = (props) =>  {
   )
 }
 
-const User = (props) => (
-  <a href='/' className='post-item'>
-    User {props.i} (1000)
-  </a>
-)
+const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
+  return class PanelHOC extends Component {
+    componentDidMount () {
+      if (this.props.load) {
+        this.props.load()
+      }
+    }
 
-const Comment = (props) => (
-  <div>
-    <strong>user</strong>
-    &nbsp;
-    <a href='/'>
-      comment details
-    </a>
-  </div>
-)
+    isFetching (control) {
+      return control.status === 'fetching'
+    }
 
-class Posts extends Component {
-  componentDidMount () {
-    this.props.fetchRecent()
-    this.props.fetchTrending()
-    this.props.fetchPopulars()
+    hasError (control) {
+      return control.status === 'failure'
+    }
+
+    render () {
+      const { control } = this.props
+
+      return (
+        <div className={col}>
+          <div className='panel panel-default'>
+            <div className='panel-heading'>
+              {head}
+            </div>
+            <div className='panel-body'>
+              { this.hasError(control) && (
+                  <div className='alert alert-danger text-center'>
+                    <strong>
+                      ¡Houston tenemos problemas! Intenta recargar la página
+                    </strong>
+                    <br/>
+                    {control.error}
+                  </div>
+                )
+              }
+              {
+                this.isFetching(control) && (
+                  <div className='spinner'>
+                    <div className='double-bounce1'></div>
+                    <div className='double-bounce2'></div>
+                  </div>
+                )
+              }
+              {
+                (!this.isFetching(control) && !this.hasError(control)) && (
+                  <WrappedComponent {...this.props} />
+                )
+              }
+            </div>
+          </div>
+        </div>
+      )
+    }
   }
-  render () {
-    const { posts, trending, populars } = this.props
+}
 
-    return (
-      <div>
-        <ul className='nav nav-tabs secondary-nav'>
-          <li className='active'><Link to='/'>Inicio</Link></li>
-          <li className=''><Link to='/'>Novatos</Link></li>
-          <li className=''><Link to='/'>Destacados</Link></li>
-        </ul>
-        <div className='app-container'>
+const Recent = PanelHOC('Últimos Posts')(({ posts }) => (
+  <ul className='list-unstyled'>
+    { posts.map(post => <Post key={post.id} {...post}/>) }
+  </ul>
+))
+
+const Trending = PanelHOC('Posts Destacados', 'col-md-12')(({ trending }) => (
+  <ul className='list-unstyled'>
+    { trending.map(post => <Post key={post.id} {...post}/>) }
+  </ul>
+))
+
+const Populars = PanelHOC('Posts Populares', 'col-md-12')(({ populars }) => (
+  <ul className='list-unstyled'>
+    { populars.map(post => <Post key={post.id} {...post}/>) }
+  </ul>
+))
+
+const Posts = (props) => (
+  <div>
+    <ul className='nav nav-tabs secondary-nav'>
+      <li className='active'><Link to='/'>Inicio</Link></li>
+      <li className=''><Link to='/'>Novatos</Link></li>
+      <li className=''><Link to='/'>Destacados</Link></li>
+    </ul>
+    <div className='app-container'>
+      <div className='row'>
+        <Recent
+          control={props.postsControl}
+          load={props.fetchRecent}
+          posts={props.posts}
+        />
+
+        <div className='col-md-4'>
           <div className='row'>
-            <div className='col-md-5'>
-              <div className='panel panel-default'>
-                <div className='panel-heading'>
-                  Últimos Posts
-                </div>
-                <div className='panel-body'>
-                  <ul className='list-unstyled'>
-                    {
-                      posts.map(post => <Post key={post.id} {...post}/>)
-                    }
-                  </ul>
-                </div>
-              </div>
+            <Trending
+              control={props.trendingControl}
+              load={props.fetchTrending}
+              trending={props.trending}
+            />
+          </div>
+          <div className='row'>
+            <Populars
+              control={props.popularsControl}
+              load={props.fetchPopulars}
+              populars={props.populars}
+            />
+          </div>
+        </div>
+
+        <div className='col-md-3'>
+          <div className='panel panel-default'>
+            <div className='panel-heading'>
+              Lorem ipsum
             </div>
-
-            <div className='col-md-4'>
-              <div className='panel panel-default'>
-                <div className='panel-heading'>
-                  Posts Destacados
-                </div>
-                <div className='panel-body'>
-                  <ul className='list-unstyled'>
-                    {
-                      trending.map(post => <Post key={post.id} {...post}/>)
-                    }
-                  </ul>
-                </div>
-              </div>
-
-              <div className='panel panel-default'>
-                <div className='panel-heading'>
-                  Posts Populares
-                </div>
-                <div className='panel-body'>
-                  <ul className='list-unstyled'>
-                    {
-                      populars.map(post => <Post key={post.id} {...post}/>)
-                    }
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className='col-md-3'>
-              <div className='panel panel-default'>
-                <div className='panel-heading'>
-                  Lorem ipsum
-                </div>
-                <div className='panel-body'>
-                  Lorem ipsum dolor
-                </div>
-              </div>
+            <div className='panel-body'>
+              Lorem ipsum dolor
             </div>
           </div>
         </div>
       </div>
-    )
-  }
-}
+    </div>
+  </div>
+)
 
 const mapStateToProps = (state) => ({
   populars: popularsSelector(state),
+  popularsControl: state.control.populars,
   posts: recentSelector(state),
+  postsControl: state.control.recent,
   trending: trendingSelector(state),
+  trendingControl: state.control.trending,
 })
 
 export default connect(mapStateToProps, actions)(Posts)
