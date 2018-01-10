@@ -44,3 +44,16 @@ export const trendingControl = (state = postsControlState, action) => {
       return state
   }
 }
+
+export const popularsControl = (state = postsControlState, action) => {
+  switch (action.type) {
+    case types.POPULARS_FETCH_REQUEST:
+      return _.assign({}, state, { status: 'fetching' })
+    case types.POPULARS_FETCH_SUCCESS:
+      return _.assign({}, state, { status: 'success', ids: action.result })
+    case types.POPULARS_FETCH_FAILURE:
+      return _.assign({}, state, { status: 'failure', error: action.message })
+    default:
+      return state
+  }
+}

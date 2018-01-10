@@ -5,13 +5,13 @@ import _ from 'lodash'
 
 import './Posts.css'
 import * as actions from './posts/actions'
-import { recentSelector, trendingSelector } from './posts/selectors'
+import { recentSelector, trendingSelector, popularsSelector } from './posts/selectors'
 
 const iconsMap = {
   privado: { x: -3, y: 0 },
   juegos: { x: 0, y: -44 },
   imagenes: { x: 0, y: -64 },
-  links: { x: 0, y: -86 },
+  links: { x: 0, y: -88 },
   videos: { x: 0, y: -110 },
   arte: { x: 0, y: -132 },
   offtopic: { x: 0, y: -154 },
@@ -31,19 +31,19 @@ const iconsMap = {
   'apuntes-y-monografias': { x: 0, y: -616 },
   comics: { x: 0, y: -637 },
   solidaridad: { x: 0, y: -661 },
-  'recetas-y-cocina': { x: 0, y: -678 },
+  'recetas-y-cocina': { x: 0, y: -680 },
   mac: { x: 0, y: -702 },
   femme: { x: 0, y: -724 },
   'autos-motos': { x: 0, y: -744 },
   humor: { x: 0, y: -769 },
-  'ebooks-tutoriales': { x: 0, y: -789 },
+  'ebooks-tutoriales': { x: 0, y: -791 },
   'salud-bienestar': { x: 0, y: -811 },
   taringa: { x: 0, y: -440 },
   'economia-negocios': { x: 0, y: -849 },
   mascotas: { x: 0, y: -866 },
   turismo: { x: 0, y: -890 },
   'manga-anime': { x: 0, y: -912 },
-  'ciencia-ficcion': { x: 0, y: -958 },
+  'ciencia-educacion': { x: 0, y: -961 },
   'hazlo-tu-mismo': { x: 0, y: -935 },
   ecologia: { x: 0, y: -459 },
 }
@@ -58,7 +58,7 @@ const Post = (props) =>  {
   return (
     <li className='post-item'>
       <div className='post-icon' title={props.category_name} style={postStyle}></div>
-      <a href={props.canonical} target='_blank'>
+      <a href={props.canonical} title={props.title} target='_blank'>
         {props.title}
       </a>
     </li>
@@ -85,9 +85,10 @@ class Posts extends Component {
   componentDidMount () {
     this.props.fetchRecent()
     this.props.fetchTrending()
+    this.props.fetchPopulars()
   }
   render () {
-    const { posts, trending } = this.props
+    const { posts, trending, populars } = this.props
 
     return (
       <div>
@@ -129,27 +130,14 @@ class Posts extends Component {
 
               <div className='panel panel-default'>
                 <div className='panel-heading'>
-                  Usuarios Top
+                  Posts Populares
                 </div>
                 <div className='panel-body'>
-                  {
-                    _.times(10, i => (
-                      <User key={i} i={i}/>
-                    ))
-                  }
-                </div>
-              </div>
-
-              <div className='panel panel-default'>
-                <div className='panel-heading'>
-                  Últimos Comentarios
-                </div>
-                <div className='panel-body'>
-                  {
-                    _.times(10, i => (
-                      <Comment key={i} i={i}/>
-                    ))
-                  }
+                  <ul className='list-unstyled'>
+                    {
+                      populars.map(post => <Post key={post.id} {...post}/>)
+                    }
+                  </ul>
                 </div>
               </div>
             </div>
@@ -172,8 +160,9 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  populars: popularsSelector(state),
   posts: recentSelector(state),
-  trending: trendingSelector(state)
+  trending: trendingSelector(state),
 })
 
 export default connect(mapStateToProps, actions)(Posts)

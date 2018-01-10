@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 
 import {
+  popularsControl,
   postsEntities,
   recentControl,
-  trendingControl
+  trendingControl,
 } from '../posts/reducers'
 
 const entities = combineReducers({
@@ -11,8 +12,9 @@ const entities = combineReducers({
 })
 
 const control = combineReducers({
+  populars: popularsControl,
   recent: recentControl,
-  trending: trendingControl
+  trending: trendingControl,
 })
 
 export default combineReducers({

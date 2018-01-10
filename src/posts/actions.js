@@ -57,3 +57,30 @@ export const fetchTrending = () => {
       .catch(error => dispatch(trendingFetchFailure(error.message)))
   }
 }
+
+export const popularsFetchRequest = () => ({
+  type: types.POPULARS_FETCH_REQUEST
+})
+
+export const popularsFetchSuccess = () => ({
+  type: types.POPULARS_FETCH_SUCCESS
+})
+
+export const popularsFetchFailure = (message) => ({
+  type: types.POPULARS_FETCH_FAILURE,
+  message: message
+})
+
+export const fetchPopulars = () => {
+  return (dispatch, getState, axios) => {
+    dispatch(popularsFetchRequest())
+
+    return axios.get('/post/populars/view/week?count=16&sort=relevance')
+      .then(response => response.data)
+      .then(data => {
+        const nextAction = _.assign({}, normalize(data, [post]), popularsFetchSuccess())
+        return dispatch(nextAction)
+      })
+      .catch(error => dispatch(popularsFetchFailure(error.message)))
+  }
+}

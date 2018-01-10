@@ -4,6 +4,7 @@ import { createSelector } from 'reselect'
 const postsState = (state) => state.entities.posts
 const recentState = (state) => state.control.recent
 const trendingState = (state) => state.control.trending
+const popularsState = (state) => state.control.populars
 
 export const recentSelector = createSelector(
   postsState,
@@ -18,5 +19,13 @@ export const trendingSelector = createSelector(
   trendingState,
   (posts, trending) => {
     return _.map(trending.ids, (id) => posts[id])
+  }
+)
+
+export const popularsSelector = createSelector(
+  postsState,
+  popularsState,
+  (posts, populars) => {
+    return _.map(populars.ids, (id) => posts[id])
   }
 )
