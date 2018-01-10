@@ -30,3 +30,30 @@ export const fetchRecent = () => {
       .catch(error => dispatch(recentFetchFailure(error.message)))
   }
 }
+
+export const trendingFetchRequest = () => ({
+  type: types.TRENDING_FETCH_REQUEST
+})
+
+export const trendingFetchSuccess = () => ({
+  type: types.TRENDING_FETCH_SUCCESS
+})
+
+export const trendingFetchFailure = (message) => ({
+  type: types.TRENDING_FETCH_FAILURE,
+  message: message
+})
+
+export const fetchTrending = () => {
+  return (dispatch, getState, axios) => {
+    dispatch(trendingFetchRequest())
+
+    return axios.get('/post/trending/view?count=10')
+      .then(response => response.data)
+      .then(data => {
+        const nextAction = _.assign({}, normalize(data, [post]), trendingFetchSuccess())
+        return dispatch(nextAction)
+      })
+      .catch(error => dispatch(trendingFetchFailure(error.message)))
+  }
+}

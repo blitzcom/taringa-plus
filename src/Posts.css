@@ -2,18 +2,22 @@
   display: flex;
   height: 18px;
   margin-bottom: 14px;
+  padding-left: 10px;
 }
 
 .post-item a,
 .post-item a:visited {
   display: block;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 8px;
 }
 
 .post-icon {
   height: 18px;
   width: 18px;
-  margin: 0 4px 0 10px;
   background: transparent url(./assets/images/icons.png) no-repeat scroll left top;
 }
 

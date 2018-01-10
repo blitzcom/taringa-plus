@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash'
 
 import './Posts.css'
-import { fetchRecent } from './posts/actions'
-import { recentSelector } from './posts/selectors'
+import * as actions from './posts/actions'
+import { recentSelector, trendingSelector } from './posts/selectors'
 
 const iconsMap = {
   privado: { x: -3, y: 0 },
@@ -83,10 +83,11 @@ const Comment = (props) => (
 
 class Posts extends Component {
   componentDidMount () {
-    this.props.dispatch(fetchRecent())
+    this.props.fetchRecent()
+    this.props.fetchTrending()
   }
   render () {
-    const { posts } = this.props
+    const { posts, trending } = this.props
 
     return (
       <div>
@@ -105,9 +106,7 @@ class Posts extends Component {
                 <div className='panel-body'>
                   <ul className='list-unstyled'>
                     {
-                      posts.map((post) => (
-                        <Post key={post.id} {...post}/>
-                      ))
+                      posts.map(post => <Post key={post.id} {...post}/>)
                     }
                   </ul>
                 </div>
@@ -120,11 +119,11 @@ class Posts extends Component {
                   Posts Destacados
                 </div>
                 <div className='panel-body'>
-                  {
-                    _.times(10, (i) => (
-                      <Post key={i} i={i}/>
-                    ))
-                  }
+                  <ul className='list-unstyled'>
+                    {
+                      trending.map(post => <Post key={post.id} {...post}/>)
+                    }
+                  </ul>
                 </div>
               </div>
 
@@ -173,7 +172,8 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  posts: recentSelector(state)
+  posts: recentSelector(state),
+  trending: trendingSelector(state)
 })
 
-export default connect(mapStateToProps)(Posts)
+export default connect(mapStateToProps, actions)(Posts)
