@@ -6,31 +6,22 @@ describe('posts entities reducer', () => {
     expect(postsEntities({}, {})).toEqual({})
   })
 
-  it('handles ADD', () => {
+  it('handles posts entities', () => {
     const action = {
-      type: types.ADD,
-      posts: [
-        { id: 1, foo: 'bar' },
-        { id: 2, foo: 'baz' }
-      ]
+      type: types.RECENT_FETCH_SUCCESS,
+      page: 1,
+      result: [1, 2],
+      entities: {
+        posts: {
+          1: { id: 1, foo: 'bar' },
+          2: { id: 2, foo: 'baz' }
+        }
+      }
     }
 
     expect(postsEntities({}, action)).toEqual({
       1: { id: 1, foo: 'bar' },
       2: { id: 2, foo: 'baz' }
     })
-  })
-
-  it('handles section FETCH_REQUEST', () => {
-    const action = {
-      type: types.REMOVE_ALL
-    }
-
-    const state = {
-      1: { id: 1, foo: 'bar' },
-      2: { id: 2, foo: 'baz' }
-    }
-
-    expect(postsEntities(state, action)).toEqual({})
   })
 })
