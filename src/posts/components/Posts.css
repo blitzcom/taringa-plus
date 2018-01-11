@@ -2,27 +2,21 @@
   display: flex;
   height: 18px;
   margin-bottom: 14px;
-  padding-left: 10px;
+  padding-left: 8px;
+  width: 100%;
 }
 
-.post-item a,
-.post-item a:visited {
+.post-item a {
   display: block;
   color: #333;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 8px;
+  width: 100%;
 }
 
 .post-item a:visited {
   color: #551A8B;
-}
-
-.post-icon {
-  height: 18px;
-  width: 18px;
-  background: transparent url(./assets/images/icons.png) no-repeat scroll left top;
 }
 
 .post-item:last-child {
