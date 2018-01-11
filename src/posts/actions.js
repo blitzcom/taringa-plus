@@ -17,14 +17,14 @@ export const recentFetchFailure = (message) => ({
   message: message
 })
 
-export const fetchRecent = () => {
+export const fetchRecent = (page = 1) => {
   return (dispatch, getState, axios) => {
     dispatch(recentFetchRequest())
 
-    return axios.get('/post/recent/view/all')
+    return axios.get(`/post/recent/view/all?page=${page}`)
       .then(response => response.data)
       .then(data => {
-        const nextAction = _.assign({}, normalize(data, [post]), recentFetchSuccess())
+        const nextAction = _.assign({ page }, normalize(data, [post]), recentFetchSuccess())
         return dispatch(nextAction)
       })
       .catch(error => dispatch(recentFetchFailure(error.message)))

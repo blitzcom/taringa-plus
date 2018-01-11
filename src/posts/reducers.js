@@ -16,7 +16,8 @@ export const postsEntities = (state = {}, action) => {
 const postsControlState = {
   error: '',
   ids: [],
-  status: 'success'
+  page: 1,
+  status: 'success',
 }
 
 export const recentControl = (state = postsControlState, action) => {
@@ -24,7 +25,7 @@ export const recentControl = (state = postsControlState, action) => {
     case types.RECENT_FETCH_REQUEST:
       return _.assign({}, state, { status: 'fetching' })
     case types.RECENT_FETCH_SUCCESS:
-      return _.assign({}, state, { status: 'success', ids: action.result })
+      return _.assign({}, state, { status: 'success', ids: action.result, page: action.page })
     case types.RECENT_FETCH_FAILURE:
       return _.assign({}, state, { status: 'failure', error: action.message })
     default:

@@ -64,7 +64,13 @@ const Post = (props) =>  {
   )
 }
 
-const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
+const PanelHOC = (args) => (WrappedComponent) => {
+  const options = args || {}
+
+  options['head'] = options['head'] || 'Posts'
+  options['col'] = options['col'] || 'col-md-12'
+  options['paginator'] = options['paginator'] || false
+
   return class PanelHOC extends Component {
     componentDidMount () {
       if (this.props.load) {
@@ -93,19 +99,78 @@ const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
       return control.ids.length <= 0
     }
 
+    scrollTop () {
+      window.scrollTo(0, 0)
+    }
+
+    handleNext (e) {
+      if (e.preventDefault) {
+        e.preventDefault()
+      }
+
+      if (!this.props.load) {
+        return
+      }
+
+      this.props.load(this.props.control.page + 1)
+      this.scrollTop()
+    }
+
+    handlePrevious (e) {
+      if (e.preventDefault) {
+        e.preventDefault()
+      }
+
+      if (!this.props.load) {
+        return
+      }
+
+      this.props.load(this.props.control.page - 1)
+      this.scrollTop()
+    }
+
+    handleFirst (e) {
+      if (e.preventDefault) {
+        e.preventDefault()
+      }
+
+      if (!this.props.load) {
+        return
+      }
+
+      this.props.load(1)
+      this.scrollTop()
+    }
+
+    handleLast (e) {
+      if (e.preventDefault) {
+        e.preventDefault()
+      }
+
+      if (!this.props.load) {
+        return
+      }
+
+      this.props.load(50)
+      this.scrollTop()
+    }
+
     render () {
       const { control } = this.props
 
-      console.log(control)
+      const isFirstPage = control.page === 1
+      const hasPreviousPage = control.page > 1
+      const hasNextPage = control.page < 50
+      const isLastPage = control.page === 50
 
       return (
-        <div className={col}>
+        <div className={options.col}>
           <div className='panel panel-default'>
             <div className='panel-heading clearfix'>
               <button className='btn pull-right' onClick={this.handleRefresh.bind(this)}>
                 <i className='fa fa-refresh'/>
               </button>
-              {head}
+              {options.head}
             </div>
             {
               (this.isFetching() && !this.isEmpty()) && (
@@ -144,6 +209,47 @@ const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
                   <WrappedComponent {...this.props} />
                 )
               }
+              {
+                (!this.isEmpty() && !this.hasError() && options.paginator) && (
+                  <div className='text-center'>
+                    <ul className='list-inline'>
+                      <li>
+                        {
+                          !isFirstPage
+                          ? <a href='/first' onClick={this.handleFirst.bind(this)}>Primero</a>
+                          : <span className='text-muted'>Primero</span>
+                        }
+                      </li>
+
+                      <li>
+                        {
+                          hasPreviousPage
+                          ? <a href='/previous' onClick={this.handlePrevious.bind(this)}>Anterior</a>
+                          : <span className='text-muted'>Anterior</span>
+                        }
+                      </li>
+                      <li>
+                        { this.props.control.page }
+                      </li>
+                      <li>
+                        {
+                          hasNextPage
+                          ? <a href='/next' onClick={this.handleNext.bind(this)}>Siguiente </a>
+                          : <span className='text-muted'>Siguiente</span>
+                        }
+
+                      </li>
+                      <li>
+                        {
+                          !isLastPage
+                          ? <a href='/last' onClick={this.handleLast.bind(this)}>Último</a>
+                          : <span className='text-muted'>Último</span>
+                        }
+                      </li>
+                    </ul>
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>
@@ -152,19 +258,19 @@ const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
   }
 }
 
-const Recent = PanelHOC('Últimos Posts')(({ posts }) => (
+const Recent = PanelHOC({ head: 'Últimos Posts', col: 'col-md-5', paginator: true })(({ posts }) => (
   <ul className='list-unstyled'>
     { posts.map(post => <Post key={post.id} {...post}/>) }
   </ul>
 ))
 
-const Trending = PanelHOC('Posts Destacados', 'col-md-12')(({ trending }) => (
+const Trending = PanelHOC({ head: 'Posts Destacados' })(({ trending }) => (
   <ul className='list-unstyled'>
     { trending.map(post => <Post key={post.id} {...post}/>) }
   </ul>
 ))
 
-const Populars = PanelHOC('Posts Populares', 'col-md-12')(({ populars }) => (
+const Populars = PanelHOC({ head: 'Posts Populares' })(({ populars }) => (
   <ul className='list-unstyled'>
     { populars.map(post => <Post key={post.id} {...post}/>) }
   </ul>
