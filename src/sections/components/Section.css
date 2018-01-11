@@ -1,9 +1,0 @@
-.section-nav .active.item {
-  font-size: 1.3rem;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.section ~ .section {
-  margin-top: 40px;
-}

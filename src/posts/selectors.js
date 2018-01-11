@@ -1,29 +1,31 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 
-const postsSelector = (state) => state.entities.posts
+const postsState = (state) => state.entities.posts
+const recentState = (state) => state.control.recent
+const trendingState = (state) => state.control.trending
+const popularsState = (state) => state.control.populars
 
-export const defaultSelector = createSelector(
-  postsSelector,
-  (posts) => _.values(posts)
+export const recentSelector = createSelector(
+  postsState,
+  recentState,
+  (posts, recent) => {
+    return _.map(recent.ids, (id) => posts[id])
+  }
 )
 
-const sectionsState = (state) => state.control.sections
+export const trendingSelector = createSelector(
+  postsState,
+  trendingState,
+  (posts, trending) => {
+    return _.map(trending.ids, (id) => posts[id])
+  }
+)
 
-export const sectionsSelector = createSelector(
-  sectionsState,
-  postsSelector,
-  (sections, posts) => {
-    let items = _.values(sections)
-    items = items.map(item => {
-
-      if (item.status === 'success') {
-        const _posts = item.postsIds.map(postId => posts[postId])
-        return _.assign({}, item, { posts: _posts })
-      }
-
-      return _.assign({}, item)
-    })
-    return items
+export const popularsSelector = createSelector(
+  postsState,
+  popularsState,
+  (posts, populars) => {
+    return _.map(populars.ids, (id) => posts[id])
   }
 )

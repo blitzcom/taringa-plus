@@ -1,21 +1,20 @@
 import { combineReducers } from 'redux'
 
-import { postsEntities } from '../posts/reducers'
-import { sectionsControl } from '../sections/reducers'
-import { readerEntities, readerControl } from '../readers/reducers'
-import { recommendsControl } from '../recommends/reducers'
-import { commentsEntities } from '../comments/reducers'
+import {
+  popularsControl,
+  postsEntities,
+  recentControl,
+  trendingControl,
+} from '../posts/reducers'
 
 const entities = combineReducers({
-  comments: commentsEntities,
   posts: postsEntities,
-  reader: readerEntities
 })
 
 const control = combineReducers({
-  reader: readerControl,
-  recommends: recommendsControl,
-  sections: sectionsControl
+  populars: popularsControl,
+  recent: recentControl,
+  trending: trendingControl,
 })
 
 export default combineReducers({

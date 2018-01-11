@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
+import './Spinner.css'
 
-import Posts from './Posts'
+import Posts from './posts/components/Posts'
 import Nav from './Nav'
 import Footer from './Footer'
 

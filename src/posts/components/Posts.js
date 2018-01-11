@@ -1,62 +1,77 @@
 import React from 'react'
-import { Card, Message } from 'semantic-ui-react'
-import _ from 'lodash'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import Post from './Post'
+import './Posts.css'
+import Panel from './Panel'
 
-export const Posts = (props) => {
-  const { posts, fetchControl } = props
+import * as actions from '../actions'
+import * as selectors from '../selectors'
 
-  if (fetchControl.status === 'fetching') {
-    return (
-      <Card.Group itemsPerRow={4}>
-        {
-          _.times(8, (i) => ({ id: i})).map(post =>(
-            <Post key={post.id} placeholder/>
-          ))
-        }
-      </Card.Group>
-    )
-  }
+const Posts = (props) => (
+  <div>
+    <ul className='nav nav-tabs secondary-nav'>
+      <li className='active'><Link to='/'>Inicio</Link></li>
+      <li className=''><Link to='/'>Novatos</Link></li>
+      <li className=''><Link to='/'>Destacados</Link></li>
+    </ul>
 
-  if (fetchControl.status === 'failure') {
-    const errorMessage = `Intenta recargar la página. Error: ${fetchControl.error}`
+    <div className='app-container'>
+      <div className='row'>
+        <Panel
+          col='col-md-5'
+          control={props.postsControl}
+          items={props.posts}
+          load={props.fetchRecent}
+          paginator
+          refresh={props.fetchRecent}
+          maxPages={50}
+          title='Últimos Posts'
+        />
 
-    return (
-      <Message
-        icon='frown'
-        header='Houston, tenemos un problema!'
-        content={errorMessage}
-        negative
-      />
-    )
-  }
+        <div className='col-md-4'>
+          <div className='row'>
+            <Panel
+              control={props.trendingControl}
+              load={props.fetchTrending}
+              refresh={props.fetchTrending}
+              items={props.trending}
+              title='Posts Destacados'
+            />
+          </div>
+          <div className='row'>
+            <Panel
+              control={props.popularsControl}
+              items={props.populars}
+              load={props.fetchPopulars}
+              refresh={props.fetchPopulars}
+              title='Posts Populares'
+            />
+          </div>
+        </div>
 
-  if (fetchControl.status === 'success' && posts.length === 0) {
-    return (
-      <Message
-        icon='smile'
-        header='No hay posts!'
-        content='Prueba recargando la página para intentar descargar los últimos posts.'
-      />
-    )
-  }
+        <div className='col-md-3'>
+          <div className='panel panel-default'>
+            <div className='panel-heading'>
+              Lorem ipsum
+            </div>
+            <div className='panel-body'>
+              Lorem ipsum dolor
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)
 
-  return (
-    <Card.Group itemsPerRow={4}>
-      {
-        posts.map(post => <Post key={post.id} {...post}/>)
-      }
-    </Card.Group>
-  )
-}
+const mapStateToProps = (state) => ({
+  populars: selectors.popularsSelector(state),
+  popularsControl: state.control.populars,
+  posts: selectors.recentSelector(state),
+  postsControl: state.control.recent,
+  trending: selectors.trendingSelector(state),
+  trendingControl: state.control.trending,
+})
 
-Posts.defaultProps = {
-  posts: [],
-  fetchControl: {
-    status: 'success',
-    error: ''
-  }
-}
-
-export default Posts
+export default connect(mapStateToProps, actions)(Posts)
