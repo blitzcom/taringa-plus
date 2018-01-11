@@ -15,6 +15,10 @@
   margin-left: 8px;
 }
 
+.post-item a:visited {
+  color: #551A8B;
+}
+
 .post-icon {
   height: 18px;
   width: 18px;

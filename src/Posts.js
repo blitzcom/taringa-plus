@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import _ from 'lodash'
 
 import './Posts.css'
 import * as actions from './posts/actions'
@@ -73,25 +72,56 @@ const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
       }
     }
 
-    isFetching (control) {
+    isFetching () {
+      const { control } = this.props
       return control.status === 'fetching'
     }
 
-    hasError (control) {
+    hasError () {
+      const { control } = this.props
       return control.status === 'failure'
+    }
+
+    handleRefresh () {
+      if (this.props.refresh) {
+        this.props.refresh()
+      }
+    }
+
+    isEmpty () {
+      const { control } = this.props
+      return control.ids.length <= 0
     }
 
     render () {
       const { control } = this.props
 
+      console.log(control)
+
       return (
         <div className={col}>
           <div className='panel panel-default'>
-            <div className='panel-heading'>
+            <div className='panel-heading clearfix'>
+              <button className='btn pull-right' onClick={this.handleRefresh.bind(this)}>
+                <i className='fa fa-refresh'/>
+              </button>
               {head}
             </div>
+            {
+              (this.isFetching() && !this.isEmpty()) && (
+                <div className='panel-body'>
+                  <div className="spinner-rect">
+                    <div className="rect1"></div>
+                    <div className="rect2"></div>
+                    <div className="rect3"></div>
+                    <div className="rect4"></div>
+                    <div className="rect5"></div>
+                  </div>
+                </div>
+              )
+            }
             <div className='panel-body'>
-              { this.hasError(control) && (
+              { this.hasError() && (
                   <div className='alert alert-danger text-center'>
                     <strong>
                       ¡Houston tenemos problemas! Intenta recargar la página
@@ -102,7 +132,7 @@ const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
                 )
               }
               {
-                this.isFetching(control) && (
+                (this.isFetching() && this.isEmpty()) &&  (
                   <div className='spinner'>
                     <div className='double-bounce1'></div>
                     <div className='double-bounce2'></div>
@@ -110,7 +140,7 @@ const PanelHOC = (head = 'Posts', col = 'col-md-5') => (WrappedComponent) => {
                 )
               }
               {
-                (!this.isFetching(control) && !this.hasError(control)) && (
+                (!this.isEmpty() && !this.hasError()) && (
                   <WrappedComponent {...this.props} />
                 )
               }
@@ -153,6 +183,7 @@ const Posts = (props) => (
           control={props.postsControl}
           load={props.fetchRecent}
           posts={props.posts}
+          refresh={props.fetchRecent}
         />
 
         <div className='col-md-4'>
@@ -161,6 +192,7 @@ const Posts = (props) => (
               control={props.trendingControl}
               load={props.fetchTrending}
               trending={props.trending}
+              refresh={props.fetchTrending}
             />
           </div>
           <div className='row'>
@@ -168,6 +200,7 @@ const Posts = (props) => (
               control={props.popularsControl}
               load={props.fetchPopulars}
               populars={props.populars}
+              refresh={props.fetchPopulars}
             />
           </div>
         </div>
