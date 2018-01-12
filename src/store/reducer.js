@@ -7,8 +7,13 @@ import {
   trendingControl,
 } from '../posts/reducers'
 
+import {
+  shoutsEntities,
+} from '../shouts/reducers'
+
 const entities = combineReducers({
   posts: postsEntities,
+  shouts: shoutsEntities,
 })
 
 const control = combineReducers({

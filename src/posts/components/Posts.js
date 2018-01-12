@@ -3,8 +3,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import './Posts.css'
-import Panel from './Panel'
 
+import Shouts from '../../shouts/components/Shouts'
+import { fetchRecentShouts } from '../../shouts/actions'
+import { shoutsSelector } from '../../shouts/selectors'
+
+import Panel from './Panel'
 import * as actions from '../actions'
 import * as selectors from '../selectors'
 
@@ -50,16 +54,14 @@ const Posts = (props) => (
           </div>
         </div>
 
-        <div className='col-md-3'>
-          <div className='panel panel-default'>
-            <div className='panel-heading'>
-              Lorem ipsum
-            </div>
-            <div className='panel-body'>
-              Lorem ipsum dolor
-            </div>
-          </div>
-        </div>
+        <Shouts
+          title='Shouts'
+          col='col-md-3'
+          load={props.fetchShouts}
+          control={{ status: 'success', ids: [1, 2, 3] }}
+          refresh={props.fetchShouts}
+          items={props.shouts}
+        />
       </div>
     </div>
   </div>
@@ -70,8 +72,16 @@ const mapStateToProps = (state) => ({
   popularsControl: state.control.populars,
   posts: selectors.recentSelector(state),
   postsControl: state.control.recent,
+  shouts: shoutsSelector(state),
   trending: selectors.trendingSelector(state),
   trendingControl: state.control.trending,
 })
 
-export default connect(mapStateToProps, actions)(Posts)
+const mapDispatchToProps = (dispatch) => ({
+  fetchPopulars: () => dispatch(actions.fetchPopulars()),
+  fetchRecent: () => dispatch(actions.fetchRecent()),
+  fetchShouts: () => dispatch(fetchRecentShouts()),
+  fetchTrending: () => dispatch(actions.fetchTrending()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)

@@ -3,7 +3,7 @@ import * as types from '../types'
 
 describe('posts entities reducer', () => {
   it('returns initial state', () => {
-    expect(postsEntities({}, {})).toEqual({})
+    expect(postsEntities(undefined, {})).toEqual({})
   })
 
   it('handles posts entities', () => {

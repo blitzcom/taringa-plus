@@ -1,0 +1,37 @@
+.shout .embed-responsive-item {
+  object-fit: cover;
+}
+
+.shout .thumbnail {
+  margin-bottom: 0;
+}
+
+.shout .btn-link {
+  color: rgba(150,150,150,1);
+}
+
+.shout .btn-link:hover {
+  color: rgb(0, 125, 255);
+}
+
+.shout .btn:focus {
+  outline: none;
+}
+
+.shout .user {
+  margin-bottom: 9px;
+}
+
+.shout .user img {
+ margin-right: 8px
+}
+
+.shout .user .name {
+  font-size: 13px;
+}
+
+.shout .body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
