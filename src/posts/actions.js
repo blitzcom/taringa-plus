@@ -4,6 +4,12 @@ import { normalize } from 'normalizr'
 import * as types from './types'
 import { post } from './schemas'
 
+const shouldFetch = (state, which) => {
+  const { status } = state.control[which]
+
+  return status !== 'fetching'
+}
+
 export const recentFetchRequest = () => ({
   type: types.RECENT_FETCH_REQUEST
 })
@@ -19,6 +25,10 @@ export const recentFetchFailure = (message) => ({
 
 export const fetchRecent = (page = 1) => {
   return (dispatch, getState, axios) => {
+    if (!shouldFetch(getState(), 'recent')) {
+      return Promise.resolve()
+    }
+
     dispatch(recentFetchRequest())
 
     return axios.get(`/post/recent/view/all?page=${page}`)
@@ -46,6 +56,10 @@ export const trendingFetchFailure = (message) => ({
 
 export const fetchTrending = () => {
   return (dispatch, getState, axios) => {
+    if (!shouldFetch(getState(), 'trending')) {
+      return Promise.resolve()
+    }
+
     dispatch(trendingFetchRequest())
 
     return axios.get('/post/trending/view?count=10')
@@ -73,6 +87,10 @@ export const popularsFetchFailure = (message) => ({
 
 export const fetchPopulars = () => {
   return (dispatch, getState, axios) => {
+    if (!shouldFetch(getState(), 'populars')) {
+      return Promise.resolve()
+    }
+
     dispatch(popularsFetchRequest())
 
     return axios.get('/post/populars/view/week?count=16&sort=relevance')
