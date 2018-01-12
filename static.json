@@ -5,8 +5,11 @@
     "/**": "index.html"
   },
   "proxies": {
-    "/taringa/": {
+    "/raw/": {
       "origin": "https://www.taringa.net"
+    },
+    "/api/": {
+      "origin": "https://api.taringa.net"
     }
   }
 }
