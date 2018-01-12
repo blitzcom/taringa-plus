@@ -17,8 +17,19 @@ export const fetchRecentFailure = (message) => ({
   message
 })
 
+const shouldFetchRecentShouts = (state) => {
+  const { status } = state.control.shouts
+
+  return status !== 'fetching'
+}
+
 export const fetchRecentShouts = () => {
   return (dispatch, getState, axios) => {
+
+    if (!shouldFetchRecentShouts(getState())) {
+      return Promise.resolve()
+    }
+
     dispatch(fetchRecentRequest())
 
     return axios.get('/shout/trends/view/3h?count=6')

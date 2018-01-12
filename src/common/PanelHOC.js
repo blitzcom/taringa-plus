@@ -48,21 +48,19 @@ const PanelHOC = () => (WrappedComponent) => {
               <button className='btn pull-right' onClick={this.handleRefresh.bind(this)}>
                 <i className='fa fa-refresh'/>
               </button>
+              {
+                (this.isFetching() && !this.isEmpty()) && (
+                  <div className='spinner-rect pull-right'>
+                    <div className='rect1'></div>
+                    <div className='rect2'></div>
+                    <div className='rect3'></div>
+                    <div className='rect4'></div>
+                    <div className='rect5'></div>
+                  </div>
+                )
+              }
               {title}
             </div>
-            {
-              (this.isFetching() && !this.isEmpty()) && (
-                <div className='panel-body'>
-                  <div className="spinner-rect">
-                    <div className="rect1"></div>
-                    <div className="rect2"></div>
-                    <div className="rect3"></div>
-                    <div className="rect4"></div>
-                    <div className="rect5"></div>
-                  </div>
-                </div>
-              )
-            }
             { this.hasError() && (
               <div className='panel-body'>
                 <div className='alert alert-danger text-center'>
