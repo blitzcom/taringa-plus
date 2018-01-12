@@ -9,6 +9,7 @@ describe('store', () => {
       entities: {
         posts: {},
         shouts: {},
+        users: {},
       },
       control: {
         populars: {

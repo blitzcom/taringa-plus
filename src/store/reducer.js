@@ -11,9 +11,14 @@ import {
   shoutsEntities,
 } from '../shouts/reducers'
 
+import {
+  usersEntities
+} from '../users/reducers'
+
 const entities = combineReducers({
   posts: postsEntities,
   shouts: shoutsEntities,
+  users: usersEntities,
 })
 
 const control = combineReducers({

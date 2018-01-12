@@ -23,7 +23,9 @@
 }
 
 .shout .user img {
- margin-right: 8px
+ margin-right: 8px;
+ width: 24px;
+ height: 24px;
 }
 
 .shout .user .name {
