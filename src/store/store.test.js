@@ -30,6 +30,11 @@ describe('store', () => {
           page: 1,
           status: 'success',
         },
+        shouts: {
+          error: '',
+          ids: [],
+          status: 'success',
+        }
       },
     })
   })

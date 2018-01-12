@@ -23,7 +23,7 @@ const postsControlState = {
 export const recentControl = (state = postsControlState, action) => {
   switch (action.type) {
     case types.RECENT_FETCH_REQUEST:
-      return _.assign({}, state, { status: 'fetching' })
+      return _.assign({}, state, { status: 'fetching', error: '' })
     case types.RECENT_FETCH_SUCCESS:
       return _.assign({}, state, { status: 'success', ids: action.result, page: action.page })
     case types.RECENT_FETCH_FAILURE:
@@ -36,7 +36,7 @@ export const recentControl = (state = postsControlState, action) => {
 export const trendingControl = (state = postsControlState, action) => {
   switch (action.type) {
     case types.TRENDING_FETCH_REQUEST:
-      return _.assign({}, state, { status: 'fetching' })
+      return _.assign({}, state, { status: 'fetching', error: '' })
     case types.TRENDING_FETCH_SUCCESS:
       return _.assign({}, state, { status: 'success', ids: action.result })
     case types.TRENDING_FETCH_FAILURE:
@@ -49,7 +49,7 @@ export const trendingControl = (state = postsControlState, action) => {
 export const popularsControl = (state = postsControlState, action) => {
   switch (action.type) {
     case types.POPULARS_FETCH_REQUEST:
-      return _.assign({}, state, { status: 'fetching' })
+      return _.assign({}, state, { status: 'fetching', error: '' })
     case types.POPULARS_FETCH_SUCCESS:
       return _.assign({}, state, { status: 'success', ids: action.result })
     case types.POPULARS_FETCH_FAILURE:

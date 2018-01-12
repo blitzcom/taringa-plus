@@ -58,7 +58,7 @@ const Posts = (props) => (
           title='Shouts'
           col='col-md-3'
           load={props.fetchShouts}
-          control={{ status: 'success', ids: [1, 2, 3] }}
+          control={props.shoutsControl}
           refresh={props.fetchShouts}
           items={props.shouts}
         />
@@ -73,6 +73,7 @@ const mapStateToProps = (state) => ({
   posts: selectors.recentSelector(state),
   postsControl: state.control.recent,
   shouts: shoutsSelector(state),
+  shoutsControl: state.control.shouts,
   trending: selectors.trendingSelector(state),
   trendingControl: state.control.trending,
 })

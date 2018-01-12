@@ -9,6 +9,7 @@ import {
 
 import {
   shoutsEntities,
+  shoutsRecentControl,
 } from '../shouts/reducers'
 
 import {
@@ -24,6 +25,7 @@ const entities = combineReducers({
 const control = combineReducers({
   populars: popularsControl,
   recent: recentControl,
+  shouts: shoutsRecentControl,
   trending: trendingControl,
 })
 
