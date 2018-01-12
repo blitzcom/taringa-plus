@@ -9,8 +9,12 @@ import { fetchRecentShouts } from '../../shouts/actions'
 import { shoutsSelector } from '../../shouts/selectors'
 
 import Panel from './Panel'
+import PostReader from './PostReader'
 import * as actions from '../actions'
 import * as selectors from '../selectors'
+
+import Modal from '../../common/Modal'
+import Visor from '../../common/Visor'
 
 const Posts = (props) => (
   <div>
@@ -62,6 +66,17 @@ const Posts = (props) => (
           refresh={props.fetchShouts}
           items={props.shouts}
         />
+
+        <Modal>
+          <Visor>
+            <div className='row'>
+              <PostReader />
+              <div className='col-md-8'>
+                <img src='https://placehold.it/1920x1080' alt='Full HD' style={{ maxWidth: '100%', height: 'auto' }}/>
+              </div>
+            </div>
+          </Visor>
+        </Modal>
       </div>
     </div>
   </div>

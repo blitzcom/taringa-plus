@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import reducer from './reducer'
 
-axios.defaults.baseURL = 'https://api.taringa.net'
+axios.defaults.baseURL = '/api'
 
 const buildThunk = () => thunk.withExtraArgument(axios)
 
