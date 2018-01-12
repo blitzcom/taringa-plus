@@ -63,39 +63,43 @@ const PanelHOC = () => (WrappedComponent) => {
                 </div>
               )
             }
-            <div className='panel-body'>
-              { this.hasError() && (
-                  <div className='alert alert-danger text-center'>
-                    <strong>
-                      ¡Houston tenemos problemas! Intenta recargar la página
-                    </strong>
-                    <br/>
-                    {control.error}
-                  </div>
-                )
-              }
-              {
-                (this.isFetching() && this.isEmpty()) &&  (
+            { this.hasError() && (
+              <div className='panel-body'>
+                <div className='alert alert-danger text-center'>
+                  <strong>
+                    ¡Houston tenemos problemas! Intenta recargar la página
+                  </strong>
+                  <br/>
+                  {control.error}
+                </div>
+              </div>
+              )
+            }
+            {
+              (this.isFetching() && this.isEmpty()) &&  (
+                <div className='panel-body'>
                   <div className='spinner'>
                     <div className='double-bounce1'></div>
                     <div className='double-bounce2'></div>
                   </div>
-                )
-              }
-              {
-                (!this.isEmpty() && !this.hasError()) && (
-                  <WrappedComponent {...this.props} />
-                )
-              }
-              {
-                (!this.isEmpty() && !this.hasError() && paginator) &&
+                </div>
+              )
+            }
+            {
+              (!this.isEmpty() && !this.hasError()) && (
+                <WrappedComponent {...this.props} />
+              )
+            }
+            {
+              (!this.isEmpty() && !this.hasError() && paginator) &&
+              <div className='panel-body'>
                 <Paginator
                   currentPage={control.page}
                   load={load}
                   maxPages={maxPages}
                 />
-              }
-            </div>
+              </div>
+            }
           </div>
         </div>
       )
