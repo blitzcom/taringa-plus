@@ -3,5 +3,10 @@
   "https_only": true,
   "routes": {
     "/**": "index.html"
+  },
+  "proxies": {
+    "/taringa/": {
+      "origin": "https://www.taringa.net"
+    }
   }
 }
