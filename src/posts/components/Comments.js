@@ -16,9 +16,11 @@ class Comments extends Component {
   }
 
   componentDidMount () {
-    const { id } = this.props
+    const { count, id } = this.props
 
-    console.log(id)
+    if (count === 0) {
+      return
+    }
 
     if (this.state.status === 'fetching') {
       return
@@ -46,7 +48,9 @@ class Comments extends Component {
   }
 
   componentWillUnmount () {
-    this.cancelToken.cancel('Comments load canceled by user')
+    if (this.cancelToken) {
+      this.cancelToken.cancel('Comments load canceled by user')
+    }
   }
 
   render () {
