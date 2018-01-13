@@ -32,23 +32,17 @@ export const popularsSelector = createSelector(
   }
 )
 
-export const postReadSelector = createSelector(
-  readerState,
-  postsState,
-  (reader, posts) => posts[reader] ? posts[reader].canonical : null
-)
-
-export const postOwnerSelector = createSelector(
+export const postSelector = createSelector(
   readerState,
   postsState,
   usersState,
   (reader, posts, users) => {
-    const post = posts[reader]
-
-    if (!post) {
+    if (!reader && !posts[reader]) {
       return null
     }
 
-    return users[post.owner] || null
+    const post = posts[reader]
+
+    return _.assign({}, post, { owner: users[post.owner] })
   }
 )

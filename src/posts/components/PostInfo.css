@@ -5,3 +5,34 @@
 .post-info hr {
   border-color: #ccc;
 }
+
+.post-info .meta .btn-link {
+  color: rgba(150,150,150,1);
+}
+
+.post-info .meta .btn-link:hover {
+  color: rgb(0, 125, 255);
+  text-decoration: none;
+}
+
+.post-info .meta .btn:focus {
+  outline: none;
+}
+
+.post-info hr {
+  margin: 0;
+}
+
+.post-info > .media {
+  margin-bottom: 20px;
+}
+
+.post-info .meta {
+  margin: 10px 0;
+}
+
+.post-info .meta .btn {
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 18px;
+}

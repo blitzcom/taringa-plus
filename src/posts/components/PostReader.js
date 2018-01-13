@@ -86,9 +86,6 @@ class PostReader extends Component {
 
   render () {
     const { body, title, status, error } = this.state
-    const { owner } = this.props
-
-    console.log(owner)
 
     return (
       <div className='post-reader'>
@@ -121,7 +118,7 @@ class PostReader extends Component {
           />
         </div>
 
-        <PostInfo {...owner}/>
+        <PostInfo {...this.props}/>
 
         <button
           className='close-reader btn'
