@@ -1,0 +1,35 @@
+.comment {
+  display: flex;
+  padding: 20px 16px 10px 16px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.comment .avatar {
+  border-radius: 3px;
+  background: white;
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+  vertical-align: baseline;
+}
+
+.comment .content {
+  margin-left: 12px;
+}
+
+.comment .content .user {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: rgba(0,0,0,.9);
+}
+
+.comment .content .body {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre-line;
+  max-width: 100%;
+  word-break: break-word;
+}

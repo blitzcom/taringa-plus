@@ -1,0 +1,13 @@
+.comments {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  height: calc(100% - 159px);
+  top: 158px;
+  width: 100%;
+}
+
+.comments .meta {
+  color: rgba(0,0,0,.4);
+  font-weight: bold;
+}
