@@ -5,6 +5,7 @@ const postsState = (state) => state.entities.posts
 const recentState = (state) => state.control.recent
 const trendingState = (state) => state.control.trending
 const popularsState = (state) => state.control.populars
+const readerState = (state) => state.control.postReader
 
 export const recentSelector = createSelector(
   postsState,
@@ -28,4 +29,9 @@ export const popularsSelector = createSelector(
   (posts, populars) => {
     return _.map(populars.ids, (id) => posts[id])
   }
+)
+
+export const postReadSelector = createSelector(
+  readerState,
+  (reader) => reader
 )

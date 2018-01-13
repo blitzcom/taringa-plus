@@ -4,9 +4,7 @@ import './Visor.css'
 
 const Visor = (props) => (
   <div className='visor'>
-    <div className='container'>
-      {props.children}
-    </div>
+    {props.children}
   </div>
 )
 

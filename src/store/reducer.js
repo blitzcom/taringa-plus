@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import {
   popularsControl,
+  postReaderControl,
   postsEntities,
   recentControl,
   trendingControl,
@@ -24,6 +25,7 @@ const entities = combineReducers({
 
 const control = combineReducers({
   populars: popularsControl,
+  postReader: postReaderControl,
   recent: recentControl,
   shouts: shoutsRecentControl,
   trending: trendingControl,

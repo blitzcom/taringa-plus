@@ -102,3 +102,12 @@ export const fetchPopulars = () => {
       .catch(error => dispatch(popularsFetchFailure(error.message)))
   }
 }
+
+export const readPost = (url) => ({
+  type: types.READ_POST,
+  url: url
+})
+
+export const closeReader = () => ({
+  type: types.CLOSE_READER
+})

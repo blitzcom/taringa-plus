@@ -34,7 +34,8 @@ describe('store', () => {
           error: '',
           ids: [],
           status: 'success',
-        }
+        },
+        postReader: null,
       },
     })
   })
