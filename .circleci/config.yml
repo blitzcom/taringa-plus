@@ -77,7 +77,7 @@ jobs:
       - run:
           name: Deploy master to Heroku
           command: |
-            git push heroku prod:master
+            git push heroku master
             heroku restart
 
   deploy-staging:
@@ -128,5 +128,5 @@ workflows:
             - build
             - test
           filters:
-            branches:
-              only: prod
+            tags:
+              only: /v.*/
