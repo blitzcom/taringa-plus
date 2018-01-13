@@ -33,3 +33,8 @@
   max-width: 100%;
   word-break: break-word;
 }
+
+.comment .content .actions button {
+  padding-left: 0;
+  padding-right: 24px;
+}

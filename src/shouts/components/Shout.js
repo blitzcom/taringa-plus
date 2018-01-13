@@ -33,19 +33,19 @@ const Shout = (props) => (
       )
     }
 
-    <button className='btn btn-link btn-sm'>
+    <button className='btn btn-link btn-sm action'>
       <i className='fa fa-thumbs-o-up'/> {props.likes}
     </button>
 
-    <button className='btn btn-link btn-sm'>
+    <button className='btn btn-link btn-sm action'>
       <i className='fa fa-comment-o'/> {props.replies}
     </button>
 
-    <button className='btn btn-link btn-sm'>
+    <button className='btn btn-link btn-sm action'>
       <i className='fa fa-share'/> {props.forwards}
     </button>
 
-    <button className='btn btn-link btn-sm'>
+    <button className='btn btn-link btn-sm action'>
       <i className='fa fa-expand'/>
     </button>
   </li>

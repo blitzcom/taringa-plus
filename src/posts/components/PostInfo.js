@@ -41,35 +41,35 @@ const PostInfo = ({ comments, favorites, followers, forwards, id, owner, score, 
       <hr/>
       <div className='meta'>
         <button
-          className='btn btn-link'
+          className='btn btn-link action'
           title='Score'
         >
           <i className='fa fa-rocket'/> {score}
         </button>
 
         <button
-          className='btn btn-link'
+          className='btn btn-link action'
           title='Visitas'
         >
           <i className='fa fa-eye'/> {visits}
         </button>
 
         <button
-          className='btn btn-link'
+          className='btn btn-link action'
           title='Favoritos'
         >
           <i className='fa fa-heart-o'/> {favorites}
         </button>
 
         <button
-          className='btn btn-link'
+          className='btn btn-link action'
           title='Compartido'
         >
           <i className='fa fa-share'/> {forwards}
         </button>
 
         <button
-          className='btn btn-link'
+          className='btn btn-link action'
           title='Seguidores'
         >
           <i className='fa fa-users'/> {followers}

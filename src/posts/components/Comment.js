@@ -24,21 +24,21 @@ const Comment = (props) => {
 
         <div className='actions'>
           <button
-            className='btn btn-link'
+            className='btn btn-link action'
             title='Respuestas'
           >
             <i className='fa fa-reply'/> {reply}
           </button>
 
           <button
-            className='btn btn-link'
+            className='btn btn-link action'
             title='+1'
           >
             <i className='fa fa-thumbs-o-up'/> {likes}
           </button>
 
           <button
-            className='btn btn-link'
+            className='btn btn-link action'
             title='-1'
           >
             <i className='fa fa-thumbs-o-down'/> {unlikes}

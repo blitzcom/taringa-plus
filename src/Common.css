@@ -1,0 +1,21 @@
+.action {
+  color: rgba(150,150,150,1);
+  outline: none;
+}
+
+.action:hover {
+  color: rgb(0,125,255) !important;
+  text-decoration: none;
+}
+
+.action:active {
+  color: rgb(88,86,214) !important;
+  outline: none;
+  text-decoration: none;
+}
+
+.action:focus {
+  color: rgba(150,150,150,1);
+  outline: none !important;
+  text-decoration: none !important;
+}
