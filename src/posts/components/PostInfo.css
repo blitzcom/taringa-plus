@@ -1,3 +1,23 @@
+.post-info {
+  background: rgba(0,0,0,.1);
+  min-height: 100%;
+  position: fixed;
+  right: calc(50% - 542px);
+  top: 0;
+  width: 400px;
+  display: flex;
+}
+
+.post-info > .content {
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+}
+
+.post-info .top-nav li {
+  float: right;
+}
+
 .post-info .user-action {
   margin-left: 16px;
 }
@@ -23,16 +43,23 @@
   margin: 0;
 }
 
-.post-info > .media {
+.post-info .media {
   margin-bottom: 20px;
+  padding: 14px;
+}
+
+.post-info .media img {
+  border-radius: 3px;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .post-info .meta {
   margin: 10px 0;
+  padding: 0 14px;
 }
 
 .post-info .meta .btn {
-  margin-left: 0;
   padding-left: 0;
-  padding-right: 18px;
+  padding-right: 24px;
 }

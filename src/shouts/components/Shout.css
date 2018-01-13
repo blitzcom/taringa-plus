@@ -6,19 +6,6 @@
   margin-bottom: 0;
 }
 
-.shout .btn-link {
-  color: rgba(150,150,150,1);
-}
-
-.shout .btn-link:hover {
-  color: rgb(0, 125, 255);
-  text-decoration: none;
-}
-
-.shout .btn:focus {
-  outline: none;
-}
-
 .shout .user {
   margin-bottom: 9px;
 }

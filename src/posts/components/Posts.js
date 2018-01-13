@@ -102,7 +102,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   closeReader: () => dispatch(actions.closeReader()),
   fetchPopulars: () => dispatch(actions.fetchPopulars()),
-  fetchRecent: () => dispatch(actions.fetchRecent()),
+  fetchRecent: (page) => dispatch(actions.fetchRecent(page)),
   fetchShouts: () => dispatch(fetchRecentShouts()),
   fetchTrending: () => dispatch(actions.fetchTrending()),
   readPost: (url) => dispatch(actions.readPost(url)),
