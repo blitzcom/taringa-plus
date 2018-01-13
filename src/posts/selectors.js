@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { createSelector } from 'reselect'
 
 const postsState = (state) => state.entities.posts
+const usersState = (state) => state.entities.users
 const recentState = (state) => state.control.recent
 const trendingState = (state) => state.control.trending
 const popularsState = (state) => state.control.populars
@@ -33,5 +34,21 @@ export const popularsSelector = createSelector(
 
 export const postReadSelector = createSelector(
   readerState,
-  (reader) => reader
+  postsState,
+  (reader, posts) => posts[reader] ? posts[reader].canonical : null
+)
+
+export const postOwnerSelector = createSelector(
+  readerState,
+  postsState,
+  usersState,
+  (reader, posts, users) => {
+    const post = posts[reader]
+
+    if (!post) {
+      return null
+    }
+
+    return users[post.owner] || null
+  }
 )

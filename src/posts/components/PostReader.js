@@ -5,6 +5,7 @@ import cheerio from 'cheerio'
 
 import './PostReader.css'
 import { addClass, removeClass, canonicalURLToRaw } from '../../Utils'
+import PostInfo from './PostInfo'
 
 class PostReader extends Component {
   constructor (props) {
@@ -85,6 +86,9 @@ class PostReader extends Component {
 
   render () {
     const { body, title, status, error } = this.state
+    const { owner } = this.props
+
+    console.log(owner)
 
     return (
       <div className='post-reader'>
@@ -116,8 +120,9 @@ class PostReader extends Component {
             dangerouslySetInnerHTML={{ __html: body }}
           />
         </div>
-        <div className='post-info'>
-        </div>
+
+        <PostInfo {...owner}/>
+
         <button
           className='close-reader btn'
           onClick={this.closeReader.bind(this)}

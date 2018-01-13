@@ -16,7 +16,7 @@ const Post = (props) => (
       onClick={e => {
         e.preventDefault()
         markAsVisited(e)
-        props.open(props.canonical)
+        props.open(props.id)
       }}
       title={props.title}
     >

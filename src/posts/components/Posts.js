@@ -77,6 +77,7 @@ const Posts = (props) => (
                 <PostReader
                   canonical={props.reader}
                   close={props.closeReader}
+                  owner={props.postOwner}
                 />
               </Visor>
             </Modal>
@@ -90,13 +91,14 @@ const Posts = (props) => (
 const mapStateToProps = (state) => ({
   populars: selectors.popularsSelector(state),
   popularsControl: state.control.populars,
+  postOwner: selectors.postOwnerSelector(state),
   posts: selectors.recentSelector(state),
   postsControl: state.control.recent,
+  reader: selectors.postReadSelector(state),
   shouts: shoutsSelector(state),
   shoutsControl: state.control.shouts,
   trending: selectors.trendingSelector(state),
   trendingControl: state.control.trending,
-  reader: selectors.postReadSelector(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

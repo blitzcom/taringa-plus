@@ -103,9 +103,9 @@ export const fetchPopulars = () => {
   }
 }
 
-export const readPost = (url) => ({
+export const readPost = (id) => ({
   type: types.READ_POST,
-  url: url
+  id: id
 })
 
 export const closeReader = () => ({

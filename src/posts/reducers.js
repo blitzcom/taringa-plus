@@ -62,7 +62,7 @@ export const popularsControl = (state = postsControlState, action) => {
 export const postReaderControl = (state = null, action) => {
   switch (action.type) {
     case types.READ_POST:
-      return action.url
+      return action.id
     case types.CLOSE_READER:
       return null
     default:

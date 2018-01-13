@@ -12,12 +12,13 @@
 }
 
 .post-reader .post-info {
-  position: fixed;
-  top: 0;
-  right: calc(50% - 542px);
-  width: 400px;
-  background: #ccc;
+  background: rgba(0,0,0,.1);
   min-height: 100%;
+  padding: 16px;
+  position: fixed;
+  right: calc(50% - 542px);
+  top: 0;
+  width: 400px;
 }
 
 .post-reader .post-content img {

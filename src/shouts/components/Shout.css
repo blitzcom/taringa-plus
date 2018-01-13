@@ -12,6 +12,7 @@
 
 .shout .btn-link:hover {
   color: rgb(0, 125, 255);
+  text-decoration: none;
 }
 
 .shout .btn:focus {
