@@ -38,13 +38,16 @@ class PostReader extends Component {
       return
     }
 
+    this.cancelToken = axios.CancelToken.source()
+
     this.setState({ status: 'fetching' }, () => {
       this.pauseBodyScroll()
 
       const rawURL = canonicalURLToRaw(canonical)
 
       axios.get(rawURL, {
-        baseURL: ''
+        baseURL: '',
+        cancelToken: this.cancelToken.token
       })
         .then(response => response.data)
         .then(data => {
@@ -60,12 +63,19 @@ class PostReader extends Component {
           }
         })
         .then(post => this.setState(post, this.postRender))
-        .catch(error => this.setState({ error: error.message, status: 'failure' }))
+        .catch(error => {
+          if (axios.isCancel(error)) {
+            return
+          }
+
+          this.setState({ error: error.message, status: 'failure' })
+        })
     })
   }
 
   componentWillUnmount () {
     this.unpauseBodyScroll()
+    this.cancelToken.cancel('Post load canceled by user')
   }
 
   closeReader (e) {
