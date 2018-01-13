@@ -42,3 +42,8 @@
   padding-left: 0;
   padding-right: 24px;
 }
+
+.comment .body .reader-img {
+  max-width: 100%;
+  height: auto;
+}

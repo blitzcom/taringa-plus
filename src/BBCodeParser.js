@@ -110,3 +110,7 @@ const tags = [
 export const toHTML = (text) => {
   return (new BBCodeParser(tags)).parse(text)
 }
+
+export const commentToHTML = (text) => {
+  return (new BBCodeParser([imgInlineTag])).parse(text)
+}

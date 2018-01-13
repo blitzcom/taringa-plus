@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './Comment.css'
+import { commentToHTML } from '../../BBCodeParser'
 
 const Comment = (props) => {
   const { body, likes, owner, reply, unlikes } = props
@@ -18,9 +19,10 @@ const Comment = (props) => {
           {owner.nick}
         </div>
 
-        <p className='body'>
-          {body}
-        </p>
+        <p
+          className='body'
+          dangerouslySetInnerHTML={{ __html: commentToHTML(body)}}
+        />
 
         <div className='actions'>
           <button
