@@ -6,7 +6,7 @@ const PostInfo = ({ comments, favorites, followers, forwards, owner, score, visi
   <div className='post-info'>
     <div className="media">
       <div className="media-left">
-        <a href="#">
+        <a href={owner.canonical} target='_blank'>
           <img className="media-object"
             src={owner.avatar.medium}
             alt={owner.nick}
