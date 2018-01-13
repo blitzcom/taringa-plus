@@ -35,6 +35,7 @@ const Posts = (props) => (
           refresh={props.fetchRecent}
           maxPages={50}
           title='Últimos Posts'
+          open={props.readPost}
         />
 
         <div className='col-md-4'>
@@ -45,6 +46,7 @@ const Posts = (props) => (
               refresh={props.fetchTrending}
               items={props.trending}
               title='Posts Destacados'
+              open={props.readPost}
             />
           </div>
           <div className='row'>
@@ -54,6 +56,7 @@ const Posts = (props) => (
               load={props.fetchPopulars}
               refresh={props.fetchPopulars}
               title='Posts Populares'
+              open={props.readPost}
             />
           </div>
         </div>
@@ -67,16 +70,18 @@ const Posts = (props) => (
           items={props.shouts}
         />
 
-        <Modal>
-          <Visor>
-            <div className='row'>
-              <PostReader />
-              <div className='col-md-8'>
-                <img src='https://placehold.it/1920x1080' alt='Full HD' style={{ maxWidth: '100%', height: 'auto' }}/>
-              </div>
-            </div>
-          </Visor>
-        </Modal>
+        {
+          props.post && (
+            <Modal>
+              <Visor>
+                <PostReader
+                  close={props.closeReader}
+                  {...props.post}
+                />
+              </Visor>
+            </Modal>
+          )
+        }
       </div>
     </div>
   </div>
@@ -85,6 +90,7 @@ const Posts = (props) => (
 const mapStateToProps = (state) => ({
   populars: selectors.popularsSelector(state),
   popularsControl: state.control.populars,
+  post: selectors.postSelector(state),
   posts: selectors.recentSelector(state),
   postsControl: state.control.recent,
   shouts: shoutsSelector(state),
@@ -94,10 +100,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  closeReader: () => dispatch(actions.closeReader()),
   fetchPopulars: () => dispatch(actions.fetchPopulars()),
   fetchRecent: () => dispatch(actions.fetchRecent()),
   fetchShouts: () => dispatch(fetchRecentShouts()),
   fetchTrending: () => dispatch(actions.fetchTrending()),
+  readPost: (url) => dispatch(actions.readPost(url)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)

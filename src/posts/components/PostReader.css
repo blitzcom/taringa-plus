@@ -1,0 +1,58 @@
+.post-reader {
+  width: 1100px;
+  background: white;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.post-reader .post-content {
+  width: 700px;
+  padding: 18px;
+  min-height: 100%;
+}
+
+.post-reader .post-info {
+  background: rgba(0,0,0,.1);
+  min-height: 100%;
+  padding: 16px;
+  position: fixed;
+  right: calc(50% - 542px);
+  top: 0;
+  width: 400px;
+}
+
+.post-reader .post-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-reader .post-content .webm-js {
+  text-align: center;
+}
+
+.post-reader .post-content video {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-reader .post-info .top-nav li {
+  float: right;
+}
+
+.post-reader .close-reader {
+  position: fixed;
+  right: 20px;
+  top: 0;
+}
+
+.post-reader .close-reader,
+.post-reader .close-reader:focus {
+  color: white;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.post-reader .close-reader:hover {
+  color: rgb(0, 125, 255);
+}

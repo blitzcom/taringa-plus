@@ -6,3 +6,7 @@ body {
   position: relative;
   z-index: 999;
 }
+
+.noscroll {
+  overflow: hidden;
+}

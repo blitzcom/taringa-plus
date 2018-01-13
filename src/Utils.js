@@ -36,3 +36,19 @@ export const getPostImageURL = (post, ratio = '4:3') => {
 
   return fallbackURL
 }
+
+export const addClass = (selector, klass) => {
+  const elements = document.querySelectorAll(selector)
+
+  _.each(elements, e => e.classList.add(klass))
+}
+
+export const removeClass = (selector, klass) => {
+  const elements = document.querySelectorAll(selector)
+
+  _.each(elements, e => e.classList.remove(klass))
+}
+
+export const canonicalURLToRaw = (canonical) => {
+  return canonical.replace('https://www.taringa.net/', '/raw/')
+}
