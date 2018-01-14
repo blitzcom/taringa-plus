@@ -60,15 +60,16 @@ export const searchFailure = (message) => ({
   message: message
 })
 
-const canSearch = (state) => {
-  return state.control.searchShouts.status !== 'fetching'
+const canSearch = (state, nextQuery) => {
+  const { status, query } = state.control.searchShouts
+  return status !== 'fetching' &&
+    query !== nextQuery
 }
 
 export const searchShouts = (query) => {
   return (dispatch, getState, axios) => {
-    console.log(query)
 
-    if (!canSearch(getState())) {
+    if (!canSearch(getState(), query)) {
       return Promise.resolve()
     }
 
