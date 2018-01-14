@@ -11,6 +11,7 @@ import {
 import {
   shoutsEntities,
   shoutsRecentControl,
+  searchShoutsControl,
 } from '../shouts/reducers'
 
 import {
@@ -27,6 +28,7 @@ const control = combineReducers({
   populars: popularsControl,
   postReader: postReaderControl,
   recent: recentControl,
+  searchShouts: searchShoutsControl,
   shouts: shoutsRecentControl,
   trending: trendingControl,
 })

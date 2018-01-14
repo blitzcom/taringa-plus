@@ -36,6 +36,12 @@ describe('store', () => {
           status: 'success',
         },
         postReader: null,
+        searchShouts: {
+          error: '',
+          ids: [],
+          query: '',
+          status: 'success',
+        },
       },
     })
   })
