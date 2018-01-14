@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import './Posts.css'
 
 import Shouts from '../../shouts/components/Shouts'
-import { fetchRecentShouts } from '../../shouts/actions'
-import { shoutsSelector } from '../../shouts/selectors'
+import ShoutVisor from '../../shouts/components/ShoutVisor'
+import { fetchRecentShouts, openShout, closeShout } from '../../shouts/actions'
+import { shoutsSelector, shoutSelector } from '../../shouts/selectors'
 
 import Panel from './Panel'
 import PostReader from './PostReader'
@@ -68,16 +69,23 @@ const Posts = (props) => (
           control={props.shoutsControl}
           refresh={props.fetchShouts}
           items={props.shouts}
+          open={props.openShout}
         />
 
         {
           props.post && (
             <Modal>
-              <Visor>
-                <PostReader
-                  close={props.closeReader}
-                  {...props.post}
-                />
+              <Visor close={props.closeReader}>
+                <PostReader {...props.post} />
+              </Visor>
+            </Modal>
+          )
+        }
+        {
+          props.shout && (
+            <Modal>
+              <Visor close={props.closeShout}>
+                <ShoutVisor {...props.shout}/>
               </Visor>
             </Modal>
           )
@@ -93,6 +101,7 @@ const mapStateToProps = (state) => ({
   post: selectors.postSelector(state),
   posts: selectors.recentSelector(state),
   postsControl: state.control.recent,
+  shout: shoutSelector(state),
   shouts: shoutsSelector(state),
   shoutsControl: state.control.shouts,
   trending: selectors.trendingSelector(state),
@@ -101,10 +110,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   closeReader: () => dispatch(actions.closeReader()),
+  closeShout: () => dispatch(closeShout()),
   fetchPopulars: () => dispatch(actions.fetchPopulars()),
   fetchRecent: (page) => dispatch(actions.fetchRecent(page)),
   fetchShouts: () => dispatch(fetchRecentShouts()),
   fetchTrending: () => dispatch(actions.fetchTrending()),
+  openShout: (id) => dispatch(openShout(id)),
   readPost: (url) => dispatch(actions.readPost(url)),
 })
 

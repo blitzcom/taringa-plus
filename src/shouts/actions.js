@@ -41,3 +41,12 @@ export const fetchRecentShouts = () => {
       .catch(error => dispatch(fetchRecentFailure(error.message)))
   }
 }
+
+export const openShout = (id) => ({
+  type: types.OPEN,
+  id: id
+})
+
+export const closeShout = (close) => ({
+  type: types.CLOSE
+})
