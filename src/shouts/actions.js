@@ -77,7 +77,7 @@ export const searchShouts = (query) => {
       return dispatch(clearSearch())
     }
 
-    if (query.length <= 3) {
+    if (query.length < 2) {
       return Promise.resolve()
     }
 
