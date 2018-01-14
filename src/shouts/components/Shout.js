@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './Shout.css'
+import { humanizeNum } from '../../Utils'
 
 const Shout = (props) => (
   <li className='list-group-item shout'>
@@ -33,16 +34,16 @@ const Shout = (props) => (
       )
     }
 
-    <button className='btn btn-link btn-sm action'>
-      <i className='fa fa-thumbs-o-up'/> {props.likes}
+    <button className='btn btn-link btn-sm action' >
+      <i className='fa fa-thumbs-o-up'/> {humanizeNum(props.likes)}
     </button>
 
     <button className='btn btn-link btn-sm action'>
-      <i className='fa fa-comment-o'/> {props.replies}
+      <i className='fa fa-comment-o'/> {humanizeNum(props.replies)}
     </button>
 
     <button className='btn btn-link btn-sm action'>
-      <i className='fa fa-share'/> {props.forwards}
+      <i className='fa fa-share'/> {humanizeNum(props.forwards)}
     </button>
 
     <button className='btn btn-link btn-sm action'>

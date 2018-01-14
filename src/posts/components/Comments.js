@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import './Comments.css'
 import Comment from './Comment'
+import { humanizeNum } from '../../Utils'
 
 class Comments extends Component {
   constructor (props) {
@@ -64,7 +65,7 @@ class Comments extends Component {
     } else if (count === 1) {
       countLabel = '1 Comentario'
     } else {
-      countLabel = `${count} Comentarios`
+      countLabel = `${humanizeNum(count)} Comentarios`
     }
 
     return (

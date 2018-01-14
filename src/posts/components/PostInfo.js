@@ -2,6 +2,7 @@ import React from 'react'
 
 import './PostInfo.css'
 
+import { humanizeNum } from '../../Utils'
 import Comments from './Comments'
 
 const PostInfo = ({ comments, favorites, followers, forwards, id, owner, score, visits }) => (
@@ -44,35 +45,35 @@ const PostInfo = ({ comments, favorites, followers, forwards, id, owner, score, 
           className='btn btn-link action'
           title='Score'
         >
-          <i className='fa fa-rocket'/> {score}
+          <i className='fa fa-rocket'/> {humanizeNum(score)}
         </button>
 
         <button
           className='btn btn-link action'
           title='Visitas'
         >
-          <i className='fa fa-eye'/> {visits}
+          <i className='fa fa-eye'/> {humanizeNum(visits)}
         </button>
 
         <button
           className='btn btn-link action'
           title='Favoritos'
         >
-          <i className='fa fa-heart-o'/> {favorites}
+          <i className='fa fa-heart-o'/> {humanizeNum(favorites)}
         </button>
 
         <button
           className='btn btn-link action'
           title='Compartido'
         >
-          <i className='fa fa-share'/> {forwards}
+          <i className='fa fa-share'/> {humanizeNum(forwards)}
         </button>
 
         <button
           className='btn btn-link action'
           title='Seguidores'
         >
-          <i className='fa fa-users'/> {followers}
+          <i className='fa fa-users'/> {humanizeNum(followers)}
         </button>
       </div>
       <hr/>
