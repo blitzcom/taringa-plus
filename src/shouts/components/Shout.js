@@ -27,6 +27,12 @@ const Shout = (props) => {
       }
 
       {
+        !props.attachment && (
+          <p>{props.body}</p>
+        )
+      }
+
+      {
         props.attachment && (
           <a
             className='thumbnail'
