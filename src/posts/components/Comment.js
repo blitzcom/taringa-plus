@@ -2,6 +2,7 @@ import React from 'react'
 
 import './Comment.css'
 import { commentToHTML } from '../../BBCodeParser'
+import { humanizeNum } from '../../Utils'
 
 const Comment = (props) => {
   const { body, likes, owner, reply, unlikes } = props
@@ -29,21 +30,21 @@ const Comment = (props) => {
             className='btn btn-link action'
             title='Respuestas'
           >
-            <i className='fa fa-reply'/> {reply}
+            <i className='fa fa-reply'/> {humanizeNum(reply)}
           </button>
 
           <button
             className='btn btn-link action'
             title='+1'
           >
-            <i className='fa fa-thumbs-o-up'/> {likes}
+            <i className='fa fa-thumbs-o-up'/> {humanizeNum(likes)}
           </button>
 
           <button
             className='btn btn-link action'
             title='-1'
           >
-            <i className='fa fa-thumbs-o-down'/> {unlikes}
+            <i className='fa fa-thumbs-o-down'/> {humanizeNum(unlikes)}
           </button>
         </div>
       </div>
