@@ -135,7 +135,6 @@ workflows:
           filters:
             tags:
               ignore: /^v.*/
-          filters:
             branches:
               only: master
       - deploy:
