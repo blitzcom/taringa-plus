@@ -106,21 +106,35 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - checkout_code
+      - checkout_code:
+          filters:
+            tags:
+              only: /.*/
       - packages:
           requires:
             - checkout_code
+          filters:
+            tags:
+              only: /.*/
       - build:
           requires:
             - packages
+          filters:
+            tags:
+              only: /.*/
       - test:
           requires:
             - packages
+          filters:
+            tags:
+              only: /.*/
       - deploy-staging:
           requires:
             - build
             - test
           filters:
+            tags:
+              ignore: /.*/
             branches:
               only: master
       - deploy:
