@@ -4,7 +4,7 @@ import axios from 'axios'
 import cheerio from 'cheerio'
 
 import './PostReader.css'
-import { addClass, removeClass, canonicalURLToRaw } from '../../Utils'
+import { canonicalURLToRaw } from '../../Utils'
 import PostInfo from './PostInfo'
 
 class PostReader extends Component {
@@ -16,14 +16,6 @@ class PostReader extends Component {
       status: 'success',
       error: ''
     }
-  }
-
-  pauseBodyScroll () {
-    addClass('body', 'noscroll')
-  }
-
-  unpauseBodyScroll () {
-    removeClass('body', 'noscroll')
   }
 
   postRender () {
@@ -42,8 +34,6 @@ class PostReader extends Component {
     this.cancelToken = axios.CancelToken.source()
 
     this.setState({ status: 'fetching' }, () => {
-      this.pauseBodyScroll()
-
       const rawURL = canonicalURLToRaw(canonical)
 
       axios.get(rawURL, {
@@ -75,13 +65,7 @@ class PostReader extends Component {
   }
 
   componentWillUnmount () {
-    this.unpauseBodyScroll()
     this.cancelToken.cancel('Post load canceled by user')
-  }
-
-  closeReader (e) {
-    e.preventDefault()
-    this.props.close()
   }
 
   render () {
@@ -120,12 +104,6 @@ class PostReader extends Component {
 
         <PostInfo {...this.props}/>
 
-        <button
-          className='close-reader btn'
-          onClick={this.closeReader.bind(this)}
-        >
-          <i className='fa fa-close fa-2x'/>
-        </button>
       </div>
     )
   }

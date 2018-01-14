@@ -9,6 +9,7 @@ import {
 } from '../posts/reducers'
 
 import {
+  shoutVisorControl,
   shoutsEntities,
   shoutsRecentControl,
   searchShoutsControl,
@@ -29,6 +30,7 @@ const control = combineReducers({
   postReader: postReaderControl,
   recent: recentControl,
   searchShouts: searchShoutsControl,
+  shoutVisor: shoutVisorControl,
   shouts: shoutsRecentControl,
   trending: trendingControl,
 })

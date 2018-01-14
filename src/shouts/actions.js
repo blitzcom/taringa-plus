@@ -77,7 +77,7 @@ export const searchShouts = (query) => {
       return dispatch(clearSearch())
     }
 
-    if (query.length <= 3) {
+    if (query.length < 2) {
       return Promise.resolve()
     }
 
@@ -98,3 +98,11 @@ export const searchShouts = (query) => {
       .catch(error => dispatch(searchFailure(error.message)))
   }
 }
+export const openShout = (id) => ({
+  type: types.OPEN,
+  id: id
+})
+
+export const closeShout = (close) => ({
+  type: types.CLOSE
+})

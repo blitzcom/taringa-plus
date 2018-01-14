@@ -5,6 +5,7 @@ const shoutsState = (state) => state.entities.shouts
 const recentState = (state) => state.control.shouts
 const usersState = (state) => state.entities.users
 const searchState = (state) => state.control.searchShouts
+const shoutVisorState = (state) => state.control.shoutVisor
 
 export const shoutsSelector = createSelector(
   shoutsState,
@@ -19,4 +20,10 @@ export const shoutsSelector = createSelector(
     const items = _.map(ids, (id) => shouts[id])
     return _.map(items, (item) => _.assign({}, item, { owner: users[item.owner] }))
   }
+)
+
+export const shoutSelector = createSelector(
+  shoutsState,
+  shoutVisorState,
+  (shouts, selected) => shouts[selected]
 )
