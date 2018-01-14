@@ -16,6 +16,8 @@ import * as selectors from '../selectors'
 import Modal from '../../common/Modal'
 import Visor from '../../common/Visor'
 
+import Search from '../../search/components/Search'
+
 const Posts = (props) => (
   <div>
     <ul className='nav nav-tabs secondary-nav'>
@@ -40,6 +42,7 @@ const Posts = (props) => (
 
         <div className='col-md-4'>
           <div className='row'>
+            <Search/>
             <Panel
               control={props.trendingControl}
               load={props.fetchTrending}
@@ -48,8 +51,6 @@ const Posts = (props) => (
               title='Posts Destacados'
               open={props.readPost}
             />
-          </div>
-          <div className='row'>
             <Panel
               control={props.popularsControl}
               items={props.populars}

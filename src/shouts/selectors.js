@@ -4,13 +4,19 @@ import { createSelector } from 'reselect'
 const shoutsState = (state) => state.entities.shouts
 const recentState = (state) => state.control.shouts
 const usersState = (state) => state.entities.users
+const searchState = (state) => state.control.searchShouts
 
 export const shoutsSelector = createSelector(
   shoutsState,
   recentState,
   usersState,
-  (shouts, recent, users) => {
-    const items = _.map(recent.ids, (id) => shouts[id])
+  searchState,
+  (shouts, recent, users, search) => {
+    const ids = (search.query.length > 0 && search.status === 'success')
+      ? search.ids
+      : recent.ids
+
+    const items = _.map(ids, (id) => shouts[id])
     return _.map(items, (item) => _.assign({}, item, { owner: users[item.owner] }))
   }
 )

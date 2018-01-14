@@ -41,3 +41,59 @@ export const fetchRecentShouts = () => {
       .catch(error => dispatch(fetchRecentFailure(error.message)))
   }
 }
+
+export const clearSearch = () => ({
+  type: types.CLEAR_SEARCH
+})
+
+export const searchRequest = (query) => ({
+  type: types.SEARCH_REQUEST,
+  query: query
+})
+
+export const searchSuccess = () => ({
+  type: types.SEARCH_SUCCESS
+})
+
+export const searchFailure = (message) => ({
+  type: types.SEARCH_FAILURE,
+  message: message
+})
+
+const canSearch = (state) => {
+  return state.control.searchShouts.status !== 'fetching'
+}
+
+export const searchShouts = (query) => {
+  return (dispatch, getState, axios) => {
+    console.log(query)
+
+    if (!canSearch(getState())) {
+      return Promise.resolve()
+    }
+
+    if (query.length === 0) {
+      return dispatch(clearSearch())
+    }
+
+    if (query.length <= 3) {
+      return Promise.resolve()
+    }
+
+    dispatch(searchRequest(query))
+
+    return axios.get('/shout/search/view', {
+      params: {
+        q: query,
+        count: 6,
+        sort: 'likes'
+      }
+    })
+      .then(response => response.data.result)
+      .then(data => {
+        const nextAction = _.assign({}, normalize(data, [shout]), searchSuccess())
+        return dispatch(nextAction)
+      })
+      .catch(error => dispatch(searchFailure(error.message)))
+  }
+}
