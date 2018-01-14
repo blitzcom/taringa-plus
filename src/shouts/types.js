@@ -7,3 +7,5 @@ export const SEARCH_SUCCESS = 'shouts/SEARCH_SUCCESS'
 export const SEARCH_FAILURE = 'shouts/SEARCH_FAILURE'
 
 export const CLEAR_SEARCH = 'shouts/CLEAR_SEARCH'
+export const OPEN = 'shouts/OPEN'
+export const CLOSE = 'shouts/CLOSE'

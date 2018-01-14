@@ -98,3 +98,11 @@ export const searchShouts = (query) => {
       .catch(error => dispatch(searchFailure(error.message)))
   }
 }
+export const openShout = (id) => ({
+  type: types.OPEN,
+  id: id
+})
+
+export const closeShout = (close) => ({
+  type: types.CLOSE
+})

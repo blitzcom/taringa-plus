@@ -50,3 +50,14 @@ export const searchShoutsControl = (state = searchState, action) => {
       return state
   }
 }
+
+export const shoutVisorControl = (state = null, action) => {
+  switch (action.type) {
+    case types.OPEN:
+      return action.id
+    case types.CLOSE:
+      return null
+    default:
+      return state
+  }
+}
