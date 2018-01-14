@@ -107,19 +107,34 @@ workflows:
   test-and-deploy:
     jobs:
       - checkout_code
+          filters:
+            tags:
+              only: /^v.*/
       - packages:
           requires:
             - checkout_code
+          filters:
+            tags:
+              only: /^v.*/
       - build:
           requires:
             - packages
+          filters:
+            tags:
+              only: /^v.*/
       - test:
           requires:
             - packages
+          filters:
+            tags:
+              only: /^v.*/
       - deploy-staging:
           requires:
             - build
             - test
+          filters:
+            tags:
+              ignore: /^v.*/
           filters:
             branches:
               only: master
