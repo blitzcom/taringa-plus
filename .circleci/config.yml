@@ -106,7 +106,7 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - checkout_code
+      - checkout_code:
           filters:
             tags:
               only: /^v.*/
