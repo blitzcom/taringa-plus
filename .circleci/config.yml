@@ -109,32 +109,32 @@ workflows:
       - checkout_code:
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - packages:
           requires:
             - checkout_code
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - build:
           requires:
             - packages
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - test:
           requires:
             - packages
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
       - deploy-staging:
           requires:
             - build
             - test
           filters:
             tags:
-              ignore: /^v.*/
+              ignore: /.*/
             branches:
               only: master
       - deploy:
